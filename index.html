@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Workspace: Claude Code, Codex và Antigravity trong một cửa sổ</title>
+<meta name="description" content="Agent Workspace là app macOS đặt Claude Code, Codex và Antigravity trong một cửa sổ, để bạn thấy agent nào đang chạy và agent nào đang đợi bạn.">
+<meta name="theme-color" content="#070707">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://dat08101999.github.io/agent-workspace/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Agent Workspace: Claude Code, Codex và Antigravity trong một cửa sổ">
+<meta property="og:description" content="App macOS để thấy agent nào đang chạy, agent nào đang đợi bạn, trả lời ngay trong app và dừng một lượt khi cần.">
+<meta property="og:url" content="https://dat08101999.github.io/agent-workspace/">
+<meta property="og:image" content="https://dat08101999.github.io/agent-workspace/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Văn phòng pixel-art có bốn agent: một đang làm cùng agent con, hai đang vẫy tay chờ bạn, một vừa xong.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dat08101999.github.io/agent-workspace/assets/og.png">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Chakra+Petch:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/atlas.png" as="image">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#hero" aria-label="Agent Workspace, về đầu trang"><i class="mark"></i>Agent Workspace</a>
+    <nav aria-label="Các mục của trang">
+      <a href="#phim">Phim</a>
+      <a href="#thay">Thấy</a>
+      <a href="#duyet">Duyệt</a>
+      <a href="#dung">Dừng</a>
+      <a href="#tiep">Tiếp</a>
+      <a href="#cai-dat">Cài đặt</a>
+      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Tải cho Mac</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Phần mở đầu là bản dùng thử: một văn phòng với bốn Agent của app, mỗi Agent ở một trạng thái thật. -->
+  <section class="hero" id="hero" aria-labelledby="say">
+    <div class="hero-top">
+      <h1 class="copy">
+        <span class="sr" id="say" aria-live="polite">Bốn agent, một cửa sổ. Hai đang chờ bạn.</span>
+        <span class="l" id="line1" aria-hidden="true">Bốn agent, một cửa sổ.</span>
+        <span class="l needs" id="needs" aria-hidden="true">Hai đang chờ bạn.</span>
+      </h1>
+      <div class="side">
+        <p>Agent Workspace đặt Claude Code, Codex và Antigravity vào một cửa sổ trên Mac. Bạn thấy agent nào đang chạy, agent nào đang chờ bạn, trả lời ngay trong app và dừng một lượt khi cần.</p>
+        <div class="cta">
+          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Tải cho Mac</a>
+          <a class="more" href="#phim">▸ Xem phim</a>
+        </div>
+        <p class="fine">macOS · Apple silicon · bản <span data-rel="version">1.0.0</span> · <span data-rel="size">62 MB</span></p>
+      </div>
+    </div>
+    <div id="room"><div class="stage" id="stage"><div class="floor" id="floor"></div></div></div>
+    <div class="dock" id="dock" aria-live="polite" hidden></div>
+    <div class="hero-bar">
+      <span class="label name">Thư mục gio-hang</span>
+      <span class="chips" id="chips" aria-label="Số agent theo trạng thái"></span>
+      <span class="label hint" id="hint">Thử ngay: bấm agent đang vẫy tay để trả lời nó.</span>
+      <button class="again" id="again" hidden>Xem lại từ đầu</button>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="legend" id="legend" aria-label="Cách một agent báo trạng thái trong Văn phòng Agent của app"></div>
+  </div>
+
+  <section class="block wrap" id="phim">
+    <div class="head reveal">
+      <span class="label">Phim</span>
+      <h2>Giao diện thật của app</h2>
+      <p class="lead">Phim quay giao diện thật của Agent Workspace, với dữ liệu mẫu. Bốn phần đi theo bốn việc: thấy, duyệt, dừng, tiếp.</p>
+    </div>
+    <div class="filmbox">
+    <div class="film reveal">
+      <video id="film" controls playsinline muted preload="none" poster="assets/film-poster.jpg" aria-label="Phim về Agent Workspace: thấy, duyệt, dừng và tiếp">
+        <source src="assets/film.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="chapters reveal" id="chapters">
+      <button class="chapter" data-id="thay"><b><span>01</span>Thấy</b>Thanh bên báo chat nào đang chạy, chat nào đang đợi bạn.</button>
+      <button class="chapter" data-id="duyet"><b><span>02</span>Duyệt</b>Với việc sửa tệp, thẻ duyệt cho thấy dòng bị xóa và dòng được thêm.</button>
+      <button class="chapter" data-id="dung"><b><span>03</span>Dừng</b>Bạn dừng một lượt đang chạy; lượt đó ghi “Đã dừng lượt này.”</button>
+      <button class="chapter" data-id="tiep"><b><span>04</span>Tiếp</b>Bạn gửi thêm tin khi lượt đang chạy.</button>
+    </div>
+    <p class="label film-note">Phim không có tiếng · tên thư mục, tên tệp và lời trong phim là dữ liệu mẫu</p>
+    </div>
+  </section>
+
+  <section class="block wrap" id="viec">
+    <div class="head reveal">
+      <span class="label">Bốn việc</span>
+      <h2>Thấy, duyệt, dừng, tiếp.</h2>
+      <p class="lead">Bốn việc bạn làm với agent, mỗi việc một mẫu nhỏ. Việc nào cần bạn thì nổi lên phía trước.</p>
+    </div>
+
+    <article class="verb reveal" id="thay">
+      <div class="ex-stage" aria-hidden="true"><div class="rows">
+        <div><span>Viết test cho giỏ hàng<small>CODEX · ĐANG CHẠY</small></span></div>
+        <div class="up"><span>Sửa giá sau giảm<small>CLAUDE CODE · CHỜ BẠN</small></span><b>!</b></div>
+        <div><span>Dọn README<small>ANTIGRAVITY · ĐANG CHẠY</small></span></div>
+        <div><span>Thêm mã giảm giá<small>CODEX · ĐÃ XONG</small></span></div>
+      </div></div>
+      <div class="words">
+        <span class="label">01 Thấy</span>
+        <h3>Thấy agent nào đang đợi bạn</h3>
+        <p>Thanh bên gom các chat vào một chỗ. “Văn phòng Agent” vẽ mỗi agent thành một nhân vật pixel-art theo trạng thái thật.</p>
+        <ul class="points">
+          <li>Thanh bên cho biết chat nào đang chạy, chat nào đang đợi bạn (dấu “!”), kèm bộ đếm “N cần bạn”.</li>
+          <li>Khi cửa sổ ở nền và một agent hỏi bạn, macOS hiện thông báo; biểu tượng Dock hiện số chat đang đợi.</li>
+          <li>Lượt chạy xong thì macOS báo “đã xong”. Tắt được trong menu của app, mục “Báo khi Agent làm xong”; thông báo câu hỏi vẫn giữ.</li>
+          <li>Sau mỗi lượt có khối liệt kê tệp đã sửa. Bấm vào một tệp để mở nó ở cột bên phải.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="verb reveal" id="duyet">
+      <div class="ex-stage" aria-hidden="true"><div class="code"><div>function finalPrice(price, discount) {</div><div class="del">  return price * discount</div><div class="add">  return price * (1 - discount)</div><div>}</div></div></div>
+      <div class="words">
+        <span class="label">02 Duyệt</span>
+        <h3>Duyệt ngay trong app</h3>
+        <p>Yêu cầu quyền của Claude Code và phê duyệt của Codex hiện thành thẻ trong app. Bạn trả lời ngay tại đó.</p>
+        <ul class="points">
+          <li>Với việc sửa tệp, thẻ cho thấy thay đổi dưới dạng dòng bị xóa và dòng được thêm.</li>
+          <li>Câu hỏi và kế hoạch của Claude Code cũng hiện ở đó để bạn trả lời.</li>
+          <li>Câu hỏi từ một agent con của Claude đang chạy nền cũng hiện lên.</li>
+        </ul>
+      </div>
+      <figure class="real">
+        <img src="assets/duyet.png" width="1130" height="316" loading="lazy" alt="Thẻ duyệt trong app: Claude muốn sửa tệp README.md, một dòng bị xóa, một dòng được thêm, hai lựa chọn Có và Không.">
+        <figcaption class="label">Ảnh chụp thẻ duyệt trong app</figcaption>
+      </figure>
+    </article>
+
+    <article class="verb reveal" id="dung">
+      <div class="ex-stage">
+        <div class="panel" id="solo" aria-hidden="true"><div class="ph"><span>ANTIGRAVITY</span><span id="solostate">ĐANG CHẠY</span></div><ul class="log" id="sololog"></ul></div>
+        <button id="stop">Dừng</button>
+      </div>
+      <div class="words">
+        <span class="label">03 Dừng</span>
+        <h3>Dừng một lượt đang chạy</h3>
+        <p>Khi một agent đi sai hướng, bạn dừng lượt đó ngay trong app. Thử bấm “Dừng” ở mẫu này.</p>
+        <ul class="points">
+          <li>Bạn dừng được một lượt đang chạy.</li>
+          <li>Lượt đã dừng được ghi “Đã dừng lượt này.”</li>
+          <li>Lượt bị lỗi hiện lý do mà nhà cung cấp báo về.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="verb reveal" id="tiep">
+      <div class="ex-stage" aria-hidden="true">
+        <div class="panel" id="duo"><div class="ph"><span>CODEX</span><span id="duostate">ĐANG CHẠY</span></div><ul class="log" id="duolog"></ul><div class="composer" id="duobox"><span id="duotext"></span><i>↑</i></div></div>
+      </div>
+      <div class="words">
+        <span class="label">04 Tiếp</span>
+        <h3>Nhắn tiếp khi lượt đang chạy</h3>
+        <p>Bạn không phải chờ một lượt xong mới nói tiếp, và tải lại trang cũng không làm mất lượt đó.</p>
+        <ul class="points">
+          <li>Bạn gửi thêm tin khi lượt đang chạy.</li>
+          <li>Bạn tải lại trang mà không mất lượt đang chạy.</li>
+          <li>Mỗi chat có lựa chọn riêng về nơi chạy (Claude Code, Codex hoặc Antigravity), model và effort.</li>
+          <li>Chat nháp không tạo gì ở nhà cung cấp cho đến tin đầu tiên.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="block wrap" id="cach-hoat-dong">
+    <div class="head reveal">
+      <span class="label">Cách hoạt động</span>
+      <h2>App chạy ngay trên máy bạn</h2>
+      <p class="lead">App là một cửa sổ native chứa một trang web chạy trên máy bạn. Trang đó do một server nhỏ phát ra, và app tự khởi động server này. Server nói chuyện với công cụ của nhà cung cấp ngay trên máy.</p>
+    </div>
+    <div class="flow reveal">
+      <div class="mac">
+        <span class="label">Trên máy Mac của bạn</span>
+        <div class="node"><b>Cửa sổ app</b><span>Cửa sổ native, bên trong là trang web chạy trên máy bạn.</span></div>
+        <i class="wire"><i></i></i>
+        <div class="node"><b>Server cục bộ</b><code>127.0.0.1:5188</code><span>Do app tự khởi động, chỉ nghe ở địa chỉ này.</span></div>
+        <i class="wire back"><i></i></i>
+        <div class="node"><b>Claude Code · Codex · Antigravity</b><span>Các công cụ đã cài và đăng nhập sẵn trên máy bạn.</span><span class="cast" data-cast="c0.claude.front c1.codex.front c1.antigravity.front" aria-hidden="true"></span></div>
+      </div>
+      <div class="outside">
+        <i class="wire"><i></i></i>
+        <div class="node ghost"><b>Nhà cung cấp</b><span>Nội dung chat do chính công cụ của bạn gửi đi, không phải app.</span></div>
+      </div>
+    </div>
+    <ul class="facts reveal">
+      <li>App không có tài khoản riêng và không gọi API model nào.</li>
+      <li>Mọi lượt chạy đều do công cụ của nhà cung cấp thực hiện.</li>
+      <li>Token cục bộ, cơ sở dữ liệu và log nằm ở <code>~/Library/Application Support/Agent Workspace</code>.</li>
+      <li>Xóa một chat hay một thư mục trong app không xóa gì ở phía nhà cung cấp.</li>
+    </ul>
+  </section>
+
+  <section class="block wrap" id="cai-dat">
+    <div class="head reveal">
+      <span class="label">Cài đặt</span>
+      <h2>Cài Agent Workspace</h2>
+      <p class="lead">Một tệp DMG. Bạn không cần cài .NET hay Node: phần server đã đi kèm trong app.</p>
+    </div>
+    <div class="install reveal">
+      <div>
+        <h4 class="sub">Cần gì để chạy</h4>
+        <ul class="bare">
+          <li>Máy Mac dùng chip Apple silicon.</li>
+          <li>Có <code>python3</code> trong máy. Bản của Xcode Command Line Tools là đủ; chưa có thì chạy <code>xcode-select --install</code>.</li>
+          <li>Ít nhất một công cụ đã cài và đã đăng nhập: Claude Code, Codex hoặc Antigravity.</li>
+        </ul>
+        <div class="get" id="tai-ngay">
+          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Tải cho Mac</a>
+          <p class="fine">Agent-Workspace-arm64.dmg · bản <span data-rel="version">1.0.0</span> · <span data-rel="size">62 MB</span><br>SHA-256 <code data-rel="sha">72a97a27a70e4a486aa9d809c3ae32bbce479ce124d2ed51703b5d780555cd0f</code></p>
+        </div>
+      </div>
+      <div>
+        <h4 class="sub">Ba bước</h4>
+        <ol class="steps">
+          <li><b>Tải tệp DMG</b>Bấm “Tải cho Mac”, hoặc lấy tệp <code>Agent-Workspace-arm64.dmg</code> ở trang <a href="https://github.com/dat08101999/agent-workspace/releases">Releases</a> trên GitHub.</li>
+          <li><b>Kéo vào Applications</b>Mở tệp DMG, rồi kéo Agent Workspace vào thư mục Applications.</li>
+          <li><b>Mở lần đầu</b>Mở Agent Workspace từ Applications. Lần đầu macOS sẽ chặn và báo không xác minh được app.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="gate reveal">
+      <div>
+        <h3>macOS sẽ chặn app ở lần mở đầu</h3>
+        <p>App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng (notarize), nên macOS chặn ở lần mở đầu. Những lần sau bạn mở như bình thường.</p>
+      </div>
+      <div>
+        <h4 class="sub">Cho phép mở</h4>
+        <ol class="steps">
+          <li>Đóng cảnh báo. Mở Cài đặt hệ thống (System Settings) → Quyền riêng tư &amp; Bảo mật (Privacy &amp; Security).</li>
+          <li>Kéo xuống phần Bảo mật. Bạn sẽ thấy một dòng nói Agent Workspace đã bị chặn.</li>
+          <li>Bấm “Vẫn mở” (Open Anyway).</li>
+          <li>Xác nhận bằng mật khẩu Mac hoặc Touch ID khi macOS hỏi, rồi mở app lại.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="first reveal">
+      <div>
+        <h3>Lần mở đầu</h3>
+        <ol class="steps">
+          <li>Thêm một thư mục: dòng “Thêm thư mục” ở cuối danh sách thư mục trên thanh bên.</li>
+          <li>Mở một chat trong thư mục đó bằng dấu “+” cạnh tên thư mục.</li>
+          <li>Chọn chat chạy ở đâu (Claude Code, Codex hoặc Antigravity), rồi chọn model và mức effort.</li>
+          <li>Gõ tin đầu tiên và gửi. Đến lúc đó app mới tạo cuộc trò chuyện ở nhà cung cấp.</li>
+        </ol>
+      </div>
+      <div>
+        <figure>
+          <img src="assets/lan-mo-dau.png" width="1440" height="900" loading="lazy" alt="Cửa sổ Agent Workspace ở lần mở đầu: thanh bên chưa có thư mục nào, có dòng Thêm thư mục.">
+          <figcaption class="label">Ảnh chụp app ở lần mở đầu, chưa có thư mục nào</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block wrap" id="noi-thang">
+    <div class="head reveal">
+      <span class="label">Nói thẳng</span>
+      <h2>Những việc app chưa làm được</h2>
+      <p class="lead">Nói trước một lần, để bạn khỏi bất ngờ sau khi tải.</p>
+    </div>
+    <div class="honest reveal">
+      <div><b>Tệp đính kèm</b><span>Chat Antigravity chưa nhận tệp đính kèm.</span></div>
+      <div><b>Bước của Antigravity</b><span>Với Antigravity, app mới hiện ba loại bước: đọc tệp, sửa tệp và chạy lệnh.</span></div>
+      <div><b>Chỉ có cho Apple silicon</b><span>Chỉ có bản cho macOS trên Apple silicon.</span></div>
+      <div><b>Chưa ký, chưa công chứng</b><span>App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng, nên cần làm các bước “Vẫn mở” ở lần mở đầu.</span></div>
+      <div><b>Bản đầu tiên, ít máy thử</b><span>Đây là bản phát hành đầu tiên và mới được thử trên ít máy. Nếu app không mở được, hãy báo ở mục <a href="https://github.com/dat08101999/agent-workspace/issues">Issues</a>.</span></div>
+      <div><b>Ngôn ngữ giao diện</b><span>Giao diện chỉ có tiếng Việt.</span></div>
+    </div>
+  </section>
+
+  <section class="block wrap" id="hoi-nhanh">
+    <div class="head reveal">
+      <span class="label">Hỏi nhanh</span>
+      <h2>Sáu câu hay được hỏi</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>App có cần tài khoản riêng không?</summary><p>Không. App dùng Claude Code, Codex và Antigravity đã cài và đăng nhập sẵn trên máy bạn, và không gọi API model nào.</p></details>
+      <details><summary>App có gửi code của tôi đi đâu không?</summary><p>Nội dung chat do chính công cụ Claude Code, Codex hoặc Antigravity của bạn gửi đi, không phải app. Mọi lượt chạy đều do công cụ của nhà cung cấp thực hiện. Server của app chỉ nghe ở <code>127.0.0.1</code>.</p></details>
+      <details><summary>Xóa chat trong app có xóa ở nhà cung cấp không?</summary><p>Không. Xóa một chat hay một thư mục trong app không xóa gì ở phía nhà cung cấp.</p></details>
+      <details><summary>App ghi gì ra ngoài thư mục dữ liệu của nó?</summary><p>Chỉ khi bạn yêu cầu. Ví dụ: bấm “Cài hook” ở mục “Nguồn trạng thái” thì app thêm một hook quan sát vào <code>~/.claude/settings.json</code> (Claude Code) hoặc <code>~/.gemini/config/hooks.json</code> (Antigravity). “Gỡ hook” gỡ nó đi.</p></details>
+      <details><summary>Gỡ cài đặt thế nào?</summary><p>Nếu đã bấm “Cài hook”, bấm “Gỡ hook” trước. Thoát app, rồi kéo Agent Workspace từ Applications vào Thùng rác. Muốn xóa cả dữ liệu thì xóa thư mục <code>~/Library/Application Support/Agent Workspace</code>.</p></details>
+      <details><summary>Báo lỗi ở đâu?</summary><p>Mở một issue ở <a href="https://github.com/dat08101999/agent-workspace/issues">mục Issues trên GitHub</a>. Ghi phiên bản app và macOS, chat chạy ở nhà cung cấp nào, các bước đã làm và điều bạn thấy. Đừng dán token hay nội dung chat nhạy cảm.</p></details>
+    </div>
+  </section>
+
+  <section class="final" id="tai">
+    <h2 id="lastline">Biết ngay agent nào đang chờ bạn.</h2>
+    <p class="lead">Tải Agent Workspace cho Mac dùng Apple silicon. App chưa ký và chưa công chứng, nên lần mở đầu bạn cần bấm “Vẫn mở”.</p>
+    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Tải cho Mac</a>
+    <p class="fine">Agent-Workspace-arm64.dmg · bản <span data-rel="version">1.0.0</span> · <span data-rel="size">62 MB</span></p>
+    <div class="lounge" aria-hidden="true"><div class="tiles"></div><div class="set" id="lounge"></div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#hero"><i class="mark"></i>Agent Workspace</a>
+    <nav class="label" aria-label="Liên kết ngoài">
+      <a href="https://github.com/dat08101999/agent-workspace#readme">Tài liệu</a>
+      <a href="https://github.com/dat08101999/agent-workspace/releases">Các bản phát hành</a>
+      <a href="https://github.com/dat08101999/agent-workspace/issues">Báo lỗi</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
