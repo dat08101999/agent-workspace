@@ -6,7 +6,9 @@ Agent Workspace là app macOS đặt Claude Code, Codex và Antigravity trong m�
 
 Tải bản mới nhất: [Agent-Workspace-arm64.dmg](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg) (các bản khác ở trang [Releases](https://github.com/dat08101999/agent-workspace/releases)).
 
-Repo này chỉ có tài liệu và tệp cài đặt. Mã nguồn không nằm ở đây.
+Trang giới thiệu, có phần dùng thử và phim: https://dat08101999.github.io/agent-workspace/
+
+Repo này chỉ có tài liệu, trang giới thiệu (nhánh `gh-pages`) và tệp cài đặt. Mã nguồn của app không nằm ở đây.
 
 ## App này làm gì
 
