@@ -96,6 +96,14 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 - Mỗi chat có lựa chọn riêng về nơi chạy (Claude Code, Codex hoặc Antigravity), model và effort.
 - Chat nháp không tạo gì ở nhà cung cấp cho đến tin đầu tiên.
 
+### Giao việc cho agent khác
+
+- Trong một chat Claude, bạn có thể nhờ Codex, Antigravity hoặc một chat Claude khác làm một việc, ví dụ "nhờ Codex review tệp này". App mở một chat thật ở provider đó và gửi việc sang, rồi đưa câu trả lời về cho Claude.
+- Chat được giao việc nằm dưới chat đã nhờ, sau nút "N con" trên thanh bên, có nhãn "giao việc". Bạn mở ra và nhắn thẳng vào đó được.
+- Bạn gọi model bằng tên quen thuộc, ví dụ "Codex sol 6.1". Nếu tên đó khớp nhiều model, Claude nhận danh sách để chọn hoặc hỏi lại bạn.
+- Mỗi chat tối đa 3 agent con cùng chạy, và agent con không tạo thêm agent con.
+- Tính năng này mặc định tắt. Bật trong Cài đặt → Provider → "Agent con khác provider".
+
 ## Dữ liệu và quyền riêng tư
 
 - App không có tài khoản riêng và không gọi API model nào.
@@ -108,10 +116,12 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 ## Chưa làm được
 
 - Chat Antigravity chưa nhận tệp đính kèm.
+- Agent con chạy ở Antigravity không nhận giới hạn quyền từ app. Nó có thể sửa tệp mà không hỏi, tuỳ cài đặt của Antigravity. Agent con Codex mặc định chỉ đọc.
+- Ở chế độ quyền Manual, mỗi lần Claude dùng công cụ agent con sẽ hiện một thẻ xin phép.
 - Với Antigravity, app mới hiện ba loại bước: đọc tệp, sửa tệp và chạy lệnh.
 - Chỉ có bản cho macOS trên Apple silicon.
 - App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng, nên cần làm các bước "Vẫn mở" ở lần mở đầu.
-- Đây là bản phát hành đầu tiên và mới được thử trên ít máy. Nếu app không mở được, hãy báo ở mục Issues.
+- App mới được thử trên ít máy. Nếu app không mở được, hãy báo ở mục Issues.
 - Giao diện chỉ có tiếng Việt.
 
 ## Gỡ cài đặt
