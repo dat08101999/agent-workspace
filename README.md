@@ -44,6 +44,8 @@ Những lần sau bạn mở app như bình thường.
 
 ## Lần mở đầu
 
+App tự tìm Claude Code, Codex và Antigravity trên máy và tự nối với chúng; bạn không phải bấm gì. Kết quả xem ở Thiết lập → Provider.
+
 1. Thêm một thư mục. Ở cuối danh sách thư mục trên thanh bên có dòng "Thêm thư mục". Một thư mục trên đĩa là một nơi làm việc của app.
 2. Mở một chat trong thư mục đó bằng dấu "+" cạnh tên thư mục.
 3. Chọn chat chạy ở đâu (Claude Code, Codex hoặc Antigravity), rồi chọn model và mức effort.
@@ -111,7 +113,8 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 - Server cục bộ chỉ nghe ở `127.0.0.1`.
 - Dữ liệu riêng của app (một token cục bộ, cơ sở dữ liệu, log) nằm ở `~/Library/Application Support/Agent Workspace`.
 - Xóa một chat hay một thư mục trong app không xóa gì ở phía nhà cung cấp.
-- App chỉ ghi ra ngoài thư mục dữ liệu khi bạn yêu cầu. Ví dụ: bấm "Cài hook" ở mục "Nguồn trạng thái" thì app thêm một hook quan sát vào `~/.claude/settings.json` (Claude Code) hoặc `~/.gemini/config/hooks.json` (Antigravity). Nút "Gỡ hook" ở cùng chỗ sẽ gỡ nó đi.
+- Mỗi lần khởi động, app thêm một mục MCP tên `pet_task_manager` vào cấu hình của từng công cụ đã cài: `~/.claude.json` (Claude Code), `~/.codex/config.toml` (Codex), `~/.gemini/config/mcp_config.json` (Antigravity). Nhờ mục này, chat có thể dùng công cụ của app, ví dụ giao việc cho agent khác. App sao lưu tệp cũ cạnh tệp gốc trước khi ghi, không sửa mục `pet_task_manager` do người khác đặt, và nếu bạn tự xoá mục đó thì app không thêm lại.
+- Ngoài việc đó, app chỉ ghi ra ngoài thư mục dữ liệu khi bạn yêu cầu. Ví dụ: bấm "Cài hook" ở mục "Nguồn trạng thái" thì app thêm một hook quan sát vào `~/.claude/settings.json` (Claude Code) hoặc `~/.gemini/config/hooks.json` (Antigravity). Nút "Gỡ hook" ở cùng chỗ sẽ gỡ nó đi.
 
 ## Chưa làm được
 
@@ -129,7 +132,8 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 1. Nếu bạn đã bấm "Cài hook" trong app, hãy bấm "Gỡ hook" trước. Lệnh hook trỏ tới vị trí của app nên sẽ hỏng khi app bị xóa hoặc dời chỗ.
 2. Thoát `Agent Workspace`.
 3. Kéo `Agent Workspace` từ thư mục Applications vào Thùng rác.
-4. Nếu muốn xóa cả dữ liệu của app, xóa thư mục `~/Library/Application Support/Agent Workspace`.
+4. Xoá mục `pet_task_manager` trong `~/.claude.json`, `~/.codex/config.toml` và `~/.gemini/config/mcp_config.json`. Mục này trỏ tới app nên sẽ hỏng khi app bị xoá.
+5. Nếu muốn xóa cả dữ liệu của app, xóa thư mục `~/Library/Application Support/Agent Workspace`.
 
 ## Hỏi và báo lỗi
 
