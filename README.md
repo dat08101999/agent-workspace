@@ -75,12 +75,15 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 - Khi một lượt chạy xong, macOS hiện thông báo "đã xong". Bạn có thể tắt loại thông báo này trong menu của app, mục "Báo khi Agent làm xong". Thông báo câu hỏi vẫn giữ nguyên.
 - Sau mỗi lượt có một khối liệt kê các tệp đã sửa. Bấm vào một tệp để mở nó ở cột bên phải.
 - Màn hình giới hạn sử dụng cho thấy các giới hạn mà từng nhà cung cấp báo về.
+- Mỗi bước làm việc (chạy lệnh, sửa tệp) mở ra được để xem output của lệnh hoặc diff của tệp.
+- Kế hoạch dạng checklist và phần suy nghĩ mà nhà cung cấp cho xem hiện ngay trong chat.
+- Giao diện có tiếng Việt và tiếng Anh. Đổi trong Cài đặt → Ngôn ngữ.
 - "Văn phòng Agent" là một văn phòng pixel-art. Mỗi agent là một nhân vật, dáng điệu phản ánh trạng thái thật: ngồi làm ở bàn, vẫy tay khi cần bạn, dấu tích khi vừa xong, và một robot nhỏ cho agent con.
 
 ### Duyệt
 
-- Yêu cầu quyền của Claude Code hiện thành một thẻ. Với việc sửa tệp, thẻ cho thấy thay đổi dưới dạng dòng bị xóa và dòng được thêm.
-- Câu hỏi và kế hoạch của Claude Code cũng hiện ở đó. Phê duyệt của Codex cũng vậy.
+- Yêu cầu quyền của Claude Code, Codex và Antigravity hiện thành một thẻ. Với việc sửa tệp, thẻ cho thấy thay đổi dưới dạng dòng bị xóa và dòng được thêm.
+- Câu hỏi và kế hoạch của Claude Code cũng hiện ở đó. Với Codex, thẻ còn có yêu cầu chạy công cụ MCP, biểu mẫu và trang cần mở.
 - Câu hỏi từ một agent con của Claude đang chạy nền cũng hiện lên để bạn trả lời.
 
 ![Thẻ duyệt một thay đổi của Claude Code](images/duyet.png)
@@ -97,12 +100,25 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 - Bạn tải lại trang mà không mất lượt đang chạy.
 - Mỗi chat có lựa chọn riêng về nơi chạy (Claude Code, Codex hoặc Antigravity), model và effort.
 - Chat nháp không tạo gì ở nhà cung cấp cho đến tin đầu tiên.
+- Gửi kèm ảnh, PDF và tệp chữ ở cả ba nhà cung cấp.
+- Sửa một tin đã gửi: hội thoại quay lại tới tin đó để bạn gửi lại. Với Claude Code, bạn chọn được khôi phục cả các tệp đã sửa sau tin đó.
+- Rẽ nhánh từ một tin để thử hướng khác trong một chat mới.
+- Chọn chế độ quyền cho Claude Code và Codex ngay trong ô soạn tin.
+- Với Codex: gửi sau (tin chờ tới khi lượt đang chạy xong), chế độ Plan, review và mục tiêu.
+- Tác vụ nền của Claude Code và Antigravity: xem output và dừng từng tác vụ.
+
+### Connector (máy chủ MCP)
+
+- Trong ô soạn tin, dấu "+" → Connector liệt kê máy chủ MCP của nhà cung cấp mà chat đang dùng.
+- Bật hoặc tắt từng máy chủ bằng công tắc, kết nối lại máy chủ đang lỗi, và đăng nhập máy chủ cần đăng nhập (Codex, Antigravity).
+- Với Codex và Antigravity, thay đổi áp dụng cho mọi chat của nhà cung cấp đó trên máy, kể cả trong app gốc. Với Claude Code, thay đổi chỉ áp dụng cho thư mục đó.
+- Tắt máy chủ `pet_task_manager` của app thì app hỏi lại trước, vì tính năng giao việc cần nó.
 
 ### Giao việc cho agent khác
 
-- Trong một chat Claude, bạn có thể nhờ Codex, Antigravity hoặc một chat Claude khác làm một việc, ví dụ "nhờ Codex review tệp này". App mở một chat thật ở provider đó và gửi việc sang, rồi đưa câu trả lời về cho Claude.
+- Trong một chat bất kỳ (Claude Code, Codex hoặc Antigravity), bạn có thể nhờ agent ở nhà cung cấp khác làm một việc, ví dụ "nhờ Codex review tệp này". App mở một chat thật ở provider đó và gửi việc sang, rồi đưa câu trả lời về cho chat đã nhờ.
 - Chat được giao việc nằm dưới chat đã nhờ, sau nút "N con" trên thanh bên, có nhãn "giao việc". Bạn mở ra và nhắn thẳng vào đó được.
-- Bạn gọi model bằng tên quen thuộc, ví dụ "Codex sol 6.1". Nếu tên đó khớp nhiều model, Claude nhận danh sách để chọn hoặc hỏi lại bạn.
+- Bạn gọi model bằng tên quen thuộc, ví dụ "Codex sol 6.1". Nếu tên đó khớp nhiều model, agent nhận danh sách để chọn hoặc hỏi lại bạn.
 - Mỗi chat tối đa 3 agent con cùng chạy, và agent con không tạo thêm agent con.
 - Tính năng này mặc định tắt. Bật trong Cài đặt → Provider → "Agent con khác provider".
 
@@ -118,14 +134,12 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 
 ## Chưa làm được
 
-- Chat Antigravity chưa nhận tệp đính kèm.
 - Agent con chạy ở Antigravity không nhận giới hạn quyền từ app. Nó có thể sửa tệp mà không hỏi, tuỳ cài đặt của Antigravity. Agent con Codex mặc định chỉ đọc.
 - Ở chế độ quyền Manual, mỗi lần Claude dùng công cụ agent con sẽ hiện một thẻ xin phép.
-- Với Antigravity, app mới hiện ba loại bước: đọc tệp, sửa tệp và chạy lệnh.
+- Đăng nhập máy chủ MCP của Claude Code chưa làm được trong app; dùng lệnh `/mcp` trong Claude Code.
 - Chỉ có bản cho macOS trên Apple silicon.
 - App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng, nên cần làm các bước "Vẫn mở" ở lần mở đầu.
 - App mới được thử trên ít máy. Nếu app không mở được, hãy báo ở mục Issues.
-- Giao diện chỉ có tiếng Việt.
 
 ## Gỡ cài đặt
 
