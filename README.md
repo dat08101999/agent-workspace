@@ -1,156 +1,158 @@
+[English](README.md) · [Tiếng Việt](README.vi.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md)
+
 # Agent Workspace
 
-Agent Workspace là app macOS đặt Claude Code, Codex và Antigravity trong một cửa sổ, để bạn thấy agent nào đang chạy và agent nào đang đợi bạn.
+Agent Workspace is a macOS app that puts Claude Code, Codex and Antigravity in one window, so you can see which agents are running and which are waiting for you.
 
 <img src="images/app-icon.png" width="128" alt="Agent Workspace">
 
-Tải bản mới nhất: [Agent-Workspace-arm64.dmg](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg) (các bản khác ở trang [Releases](https://github.com/dat08101999/agent-workspace/releases)).
+Download the latest version: [Agent-Workspace-arm64.dmg](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg) (other versions are on the [Releases](https://github.com/dat08101999/agent-workspace/releases) page).
 
-Trang giới thiệu, có phần dùng thử và phim: https://dat08101999.github.io/agent-workspace/
+Landing page, with an interactive demo and a film: https://dat08101999.github.io/agent-workspace/
 
-Repo này chỉ có tài liệu, trang giới thiệu (nhánh `gh-pages`) và tệp cài đặt. Mã nguồn của app không nằm ở đây.
+This repo contains only documentation, the landing page (the `gh-pages` branch) and installers. The app's source code is not here.
 
-## App này làm gì
+## What the app does
 
-Bạn mở vài agent cùng lúc, mỗi agent làm việc trong một thư mục khác nhau. Một agent dừng lại để hỏi bạn xem có cho sửa tệp không. Bạn đang ở cửa sổ khác nên không biết. Agent cứ đợi.
+You open several agents at once, each working in a different folder. One stops to ask whether it may edit a file. You're in another window and don't notice. The agent keeps waiting.
 
-Agent Workspace gom các chat vào một thanh bên. Chat nào đang chạy, chat nào đang đợi bạn đều hiện ngay ở đó. Khi cần bạn, app báo bằng thông báo macOS và con số trên biểu tượng Dock. Bạn trả lời ngay trong app.
+Agent Workspace brings your chats into one sidebar. You can see which chats are running and which are waiting for you. When you are needed, the app shows a macOS notification and a count on the Dock icon. Reply in the app.
 
-App dùng các công cụ Claude Code, Codex và Antigravity đã cài và đã đăng nhập sẵn trên máy bạn. App không có tài khoản riêng.
+The app uses Claude Code, Codex and Antigravity already installed and signed in on your machine. It has no account of its own.
 
-## Cần gì để chạy
+## What you need
 
-- Máy Mac dùng chip Apple silicon.
-- `python3` có trong máy. Bản đi kèm Xcode Command Line Tools là đủ; nếu chưa có, chạy `xcode-select --install` trong Terminal.
-- Ít nhất một trong ba công cụ: Claude Code, Codex, Antigravity. Công cụ đó phải đã cài và đã đăng nhập.
+- A Mac with Apple silicon.
+- `python3` on your machine. The version from Xcode Command Line Tools is enough; if you don't have it, run `xcode-select --install` in Terminal.
+- At least one of the three tools: Claude Code, Codex, Antigravity. It must be installed and signed in.
 
-Bạn không cần cài .NET hay Node. Phần server đã đi kèm trong app.
+You don't need to install .NET or Node. The server comes with the app.
 
-## Cài đặt
+## Install
 
-1. Bấm đường dẫn ở trên, hoặc vào trang Releases, tải tệp `Agent-Workspace-arm64.dmg`.
-2. Mở tệp DMG, kéo `Agent Workspace` vào thư mục Applications.
-3. Mở `Agent Workspace` từ Applications. Lần đầu macOS sẽ chặn và báo không xác minh được app.
+1. Click the link above, or go to Releases and download `Agent-Workspace-arm64.dmg`.
+2. Open the DMG and drag `Agent Workspace` into Applications.
+3. Open `Agent Workspace` from Applications. macOS will block it the first time and say it cannot verify the app.
 
-App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng (notarize), nên macOS chặn ở lần mở đầu. Để cho phép:
+The app is not signed with an Apple Developer ID or notarized by Apple, so macOS blocks it the first time. To allow it:
 
-1. Đóng hộp thoại cảnh báo của macOS.
-2. Mở Cài đặt hệ thống → Quyền riêng tư & Bảo mật.
-3. Kéo xuống phần Bảo mật. Bạn sẽ thấy một dòng nói `Agent Workspace` đã bị chặn.
-4. Bấm "Vẫn mở". Nếu macOS dùng tiếng Anh: System Settings → Privacy & Security → "Open Anyway".
-5. Xác nhận bằng mật khẩu Mac hoặc Touch ID khi macOS hỏi, rồi mở app lại.
+1. Dismiss the macOS warning.
+2. Open System Settings → Privacy & Security.
+3. Scroll down to Security. You'll see a message saying `Agent Workspace` was blocked.
+4. Click "Open Anyway". In Vietnamese: Cài đặt hệ thống → Quyền riêng tư & Bảo mật → "Vẫn mở".
+5. Confirm with your Mac password or Touch ID when macOS asks, then open the app again.
 
-Những lần sau bạn mở app như bình thường.
+After that, open the app normally.
 
-## Lần mở đầu
+## First launch
 
-App tự tìm Claude Code, Codex và Antigravity trên máy và tự nối với chúng; bạn không phải bấm gì. Kết quả xem ở Thiết lập → Provider.
+The app finds Claude Code, Codex and Antigravity on your machine and connects to them automatically; you don't need to click anything. See the results in Settings → Provider.
 
-1. Thêm một thư mục. Ở cuối danh sách thư mục trên thanh bên có dòng "Thêm thư mục". Một thư mục trên đĩa là một nơi làm việc của app.
-2. Mở một chat trong thư mục đó bằng dấu "+" cạnh tên thư mục.
-3. Chọn chat chạy ở đâu (Claude Code, Codex hoặc Antigravity), rồi chọn model và mức effort.
-4. Gõ tin đầu tiên và gửi.
+1. Add a folder. Use "Add folder" at the bottom of the folder list in the sidebar. A folder on disk is a workspace for the app.
+2. Open a chat in that folder with the "+" next to the folder's name.
+3. Choose where the chat runs (Claude Code, Codex or Antigravity), then choose a model and effort level.
+4. Type and send your first message.
 
-Chat mới là một bản nháp. App chưa tạo cuộc trò chuyện nào ở nhà cung cấp cho đến khi bạn gửi tin đầu tiên.
+A new chat is a draft. The app creates no conversation at the provider until you send the first message.
 
-![Lần mở đầu: chưa có thư mục nào](images/lan-mo-dau.png)
+![First launch: no folders yet](images/lan-mo-dau.png)
 
-## Cách hoạt động
+## How it works
 
-App là một cửa sổ native, bên trong là một trang web chạy trên máy bạn. Trang đó do một server nhỏ phát ra. App tự khởi động server này. Server chỉ nghe ở `127.0.0.1` (cổng 5188). Server nói chuyện với Claude Code, Codex và Antigravity ngay trên máy. Các script phụ chạy bằng `python3` của máy.
+The app is a native window containing a web page running on your machine. A small server serves that page. The app starts this server itself. The server listens only on `127.0.0.1` (port 5188). It talks to Claude Code, Codex and Antigravity on your machine. Helper scripts run with your machine's `python3`.
 
 ```
-Cửa sổ app  <->  server cục bộ 127.0.0.1:5188  <->  Claude Code / Codex / Antigravity
-                                                     (trên máy Mac của bạn)
+App window  <->  local server 127.0.0.1:5188  <->  Claude Code / Codex / Antigravity
+                                                  (on your Mac)
 ```
 
-App không gọi API model nào. Mọi lượt chạy đều do công cụ của nhà cung cấp thực hiện.
+The app calls no model API. Every turn runs through the provider's tools.
 
-## Tính năng
+## Features
 
-### Thấy
+### See
 
-- Thanh bên cho biết chat nào đang chạy và chat nào đang đợi bạn (dấu "!"). Bộ đếm `N cần bạn` cho biết có bao nhiêu chat cần bạn.
-- Khi cửa sổ ở nền, nếu một agent hỏi bạn thì macOS hiện thông báo và biểu tượng Dock hiện số chat đang đợi.
-- Khi một lượt chạy xong, macOS hiện thông báo "đã xong". Bạn có thể tắt loại thông báo này trong menu của app, mục "Báo khi Agent làm xong". Thông báo câu hỏi vẫn giữ nguyên.
-- Sau mỗi lượt có một khối liệt kê các tệp đã sửa. Bấm vào một tệp để mở nó ở cột bên phải.
-- Màn hình giới hạn sử dụng cho thấy các giới hạn mà từng nhà cung cấp báo về.
-- Mỗi bước làm việc (chạy lệnh, sửa tệp) mở ra được để xem output của lệnh hoặc diff của tệp.
-- Kế hoạch dạng checklist và phần suy nghĩ mà nhà cung cấp cho xem hiện ngay trong chat.
-- Giao diện có tiếng Việt và tiếng Anh. Đổi trong Cài đặt → Ngôn ngữ.
-- "Văn phòng Agent" là một văn phòng pixel-art. Mỗi agent là một nhân vật, dáng điệu phản ánh trạng thái thật: ngồi làm ở bàn, vẫy tay khi cần bạn, dấu tích khi vừa xong, và một robot nhỏ cho agent con.
+- The sidebar shows which chats are running and which are waiting for you (the "!" mark). The `N need you` counter shows how many chats need you.
+- When the window is in the background and an agent asks you something, macOS shows a notification and the Dock icon shows the number of waiting chats.
+- When a turn finishes, macOS shows a "done" notification. You can turn this off in the app menu under "Notify when Agent finishes". Question notifications stay on.
+- After each turn, a block lists the edited files. Click a file to open it in the right column.
+- The usage limits screen shows the limits each provider reports.
+- Expand each work step (running a command, editing a file) to see the command's output or the file's diff.
+- Checklist plans and the thinking the provider makes available appear in the chat.
+- The interface is available in English, Vietnamese, Spanish, Portuguese (Brazil), French and German. It follows your Mac's language; change it in Settings → Language.
+- "Agent Office" is a pixel-art office. Each agent is a character whose pose reflects its real status: working at a desk, waving when it needs you, a check mark when just finished, and a small robot for a child agent.
 
-### Duyệt
+### Approve
 
-- Yêu cầu quyền của Claude Code, Codex và Antigravity hiện thành một thẻ. Với việc sửa tệp, thẻ cho thấy thay đổi dưới dạng dòng bị xóa và dòng được thêm.
-- Câu hỏi và kế hoạch của Claude Code cũng hiện ở đó. Với Codex, thẻ còn có yêu cầu chạy công cụ MCP, biểu mẫu và trang cần mở.
-- Câu hỏi từ một agent con của Claude đang chạy nền cũng hiện lên để bạn trả lời.
+- Permission requests from Claude Code, Codex and Antigravity appear as cards. For file edits, the card shows removed and added lines. On an Antigravity card, "Allow in this chat" also allows the same kind of command later in that chat.
+- Claude Code's questions and plans appear there too. For Codex, cards also include requests to run MCP tools, forms and pages to open.
+- Questions from a Claude child agent running in the background appear for you to answer too.
 
-![Thẻ duyệt một thay đổi của Claude Code](images/duyet.png)
+![An approval card for a Claude Code change](images/duyet.png)
 
-### Dừng
+### Stop
 
-- Bạn dừng được một lượt đang chạy.
-- Lượt đã dừng được ghi "Đã dừng lượt này."
-- Lượt bị lỗi hiện lý do mà nhà cung cấp báo về.
+- You can stop a running turn.
+- A stopped turn is marked "This turn was stopped."
+- A failed turn shows the reason reported by the provider.
 
-### Tiếp
+### Continue
 
-- Bạn gửi thêm tin khi lượt đang chạy.
-- Bạn tải lại trang mà không mất lượt đang chạy.
-- Mỗi chat có lựa chọn riêng về nơi chạy (Claude Code, Codex hoặc Antigravity), model và effort.
-- Chat nháp không tạo gì ở nhà cung cấp cho đến tin đầu tiên.
-- Gửi kèm ảnh, PDF và tệp chữ ở cả ba nhà cung cấp.
-- Sửa một tin đã gửi: hội thoại quay lại tới tin đó để bạn gửi lại. Với Claude Code, bạn chọn được khôi phục cả các tệp đã sửa sau tin đó.
-- Rẽ nhánh từ một tin để thử hướng khác trong một chat mới.
-- Chọn chế độ quyền cho Claude Code và Codex ngay trong ô soạn tin.
-- Với Codex: gửi sau (tin chờ tới khi lượt đang chạy xong), chế độ Plan, review và mục tiêu.
-- Tác vụ nền của Claude Code và Antigravity: xem output và dừng từng tác vụ.
+- Send another message while a turn is running.
+- Reload the page without losing the running turn.
+- Each chat has its own choice of runtime (Claude Code, Codex or Antigravity), model and effort.
+- A draft chat creates nothing at the provider until the first message.
+- Attach images, PDFs and text files with all three providers.
+- Edit a sent message: the conversation returns to that message so you can send it again. With Claude Code, you can also choose to restore files edited after that message.
+- Branch from a message to try another direction in a new chat.
+- Choose the permission mode in the composer: per chat for Claude Code and Codex; per folder for Antigravity (Request Review, Default or Turbo, saved in Antigravity's settings for that project).
+- With Codex: send later (a message waits until the running turn finishes), Plan mode, review and goals.
+- Background tasks from Claude Code and Antigravity: view output and stop individual tasks.
 
-### Connector (máy chủ MCP)
+### Connectors (MCP servers)
 
-- Trong ô soạn tin, dấu "+" → Connector liệt kê máy chủ MCP của nhà cung cấp mà chat đang dùng.
-- Bật hoặc tắt từng máy chủ bằng công tắc, kết nối lại máy chủ đang lỗi, và đăng nhập máy chủ cần đăng nhập (Codex, Antigravity).
-- Với Codex và Antigravity, thay đổi áp dụng cho mọi chat của nhà cung cấp đó trên máy, kể cả trong app gốc. Với Claude Code, thay đổi chỉ áp dụng cho thư mục đó.
-- Tắt máy chủ `pet_task_manager` của app thì app hỏi lại trước, vì tính năng giao việc cần nó.
+- In the composer, "+" → Connector lists the MCP servers of the provider the chat uses.
+- Turn each server on or off, reconnect a failed server, and sign in to servers that require it (Codex, Antigravity).
+- With Codex and Antigravity, changes apply to every chat from that provider on your machine, including in its native app. With Claude Code, changes apply only to that folder.
+- Before turning off the app's `pet_task_manager` server, the app asks again, because delegation needs it.
 
-### Giao việc cho agent khác
+### Delegate to another agent
 
-- Trong một chat bất kỳ (Claude Code, Codex hoặc Antigravity), bạn có thể nhờ agent ở nhà cung cấp khác làm một việc, ví dụ "nhờ Codex review tệp này". App mở một chat thật ở provider đó và gửi việc sang, rồi đưa câu trả lời về cho chat đã nhờ.
-- Chat được giao việc nằm dưới chat đã nhờ, sau nút "N con" trên thanh bên, có nhãn "giao việc". Bạn mở ra và nhắn thẳng vào đó được.
-- Bạn gọi model bằng tên quen thuộc, ví dụ "Codex sol 6.1". Nếu tên đó khớp nhiều model, agent nhận danh sách để chọn hoặc hỏi lại bạn.
-- Mỗi chat tối đa 3 agent con cùng chạy, và agent con không tạo thêm agent con.
-- Tính năng này mặc định tắt. Bật trong Cài đặt → Provider → "Agent con khác provider".
+- In any chat (Claude Code, Codex or Antigravity), ask an agent from another provider to do something, for example "ask Codex to review this file". The app opens a real chat at that provider and sends the task, then returns the answer to the chat that asked.
+- A delegated chat sits under the chat that asked, behind the "N children" button in the sidebar, with a "delegated" label. You can open it and message it directly.
+- Ask for a model by its familiar name, for example "Codex sol 6.1". If that matches several models, the agent gets a list to choose from or asks you.
+- Each chat can have at most 3 child agents running at once, and child agents cannot create more child agents.
+- This feature is off by default. Enable it in Settings → Provider → "Child agents from other providers".
 
-## Dữ liệu và quyền riêng tư
+## Data and privacy
 
-- App không có tài khoản riêng và không gọi API model nào.
-- Nội dung chat do chính công cụ Claude Code, Codex hoặc Antigravity của bạn gửi đi, không phải app.
-- Server cục bộ chỉ nghe ở `127.0.0.1`.
-- Dữ liệu riêng của app (một token cục bộ, cơ sở dữ liệu, log) nằm ở `~/Library/Application Support/Agent Workspace`.
-- Xóa một chat hay một thư mục trong app không xóa gì ở phía nhà cung cấp.
-- Mỗi lần khởi động, app thêm một mục MCP tên `pet_task_manager` vào cấu hình của từng công cụ đã cài: `~/.claude.json` (Claude Code), `~/.codex/config.toml` (Codex), `~/.gemini/config/mcp_config.json` (Antigravity). Nhờ mục này, chat có thể dùng công cụ của app, ví dụ giao việc cho agent khác. App sao lưu tệp cũ cạnh tệp gốc trước khi ghi, không sửa mục `pet_task_manager` do người khác đặt, và nếu bạn tự xoá mục đó thì app không thêm lại.
-- Ngoài việc đó, app chỉ ghi ra ngoài thư mục dữ liệu khi bạn yêu cầu. Ví dụ: bấm "Cài hook" ở mục "Nguồn trạng thái" thì app thêm một hook quan sát vào `~/.claude/settings.json` (Claude Code) hoặc `~/.gemini/config/hooks.json` (Antigravity). Nút "Gỡ hook" ở cùng chỗ sẽ gỡ nó đi.
+- The app has no account of its own and calls no model API.
+- Your own Claude Code, Codex or Antigravity tools send chat content, not the app.
+- The local server listens only on `127.0.0.1`.
+- The app's own data (a local token, database and logs) is in `~/Library/Application Support/Agent Workspace`.
+- Removing a chat or folder in the app deletes nothing at the provider.
+- On each launch, the app adds an MCP entry named `pet_task_manager` to each installed tool's configuration: `~/.claude.json` (Claude Code), `~/.codex/config.toml` (Codex), `~/.gemini/config/mcp_config.json` (Antigravity). This lets chats use the app's tools, such as delegating to another agent. Before writing, the app backs up the old file beside the original, leaves any `pet_task_manager` entry placed by someone else alone, and does not add it again if you remove it yourself.
+- Otherwise, the app writes outside its data folder only when you ask. For example, clicking "Install hook" under "Status source" adds an observation hook to `~/.claude/settings.json` (Claude Code) or `~/.gemini/config/hooks.json` (Antigravity). "Remove hook" in the same place removes it.
 
-## Chưa làm được
+## Current limitations
 
-- Agent con chạy ở Antigravity không nhận giới hạn quyền từ app. Nó có thể sửa tệp mà không hỏi, tuỳ cài đặt của Antigravity. Agent con Codex mặc định chỉ đọc.
-- Ở chế độ quyền Manual, mỗi lần Claude dùng công cụ agent con sẽ hiện một thẻ xin phép.
-- Đăng nhập máy chủ MCP của Claude Code chưa làm được trong app; dùng lệnh `/mcp` trong Claude Code.
-- Chỉ có bản cho macOS trên Apple silicon.
-- App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng, nên cần làm các bước "Vẫn mở" ở lần mở đầu.
-- App mới được thử trên ít máy. Nếu app không mở được, hãy báo ở mục Issues.
+- Child agents running in Antigravity do not receive permission limits from the app: they follow the Antigravity mode of their folder, which you can change from the chat's Mode button. Codex child agents are read-only by default.
+- In Manual permission mode, each time Claude uses the child-agent tool, an approval card appears.
+- Signing in to Claude Code's MCP servers is not available in the app yet; use `/mcp` in Claude Code.
+- Only available for macOS on Apple silicon.
+- The app is not signed with an Apple Developer ID or notarized by Apple, so you need the "Open Anyway" steps the first time.
+- The app has only been tested on a few machines. If it won't open, report it in Issues.
 
-## Gỡ cài đặt
+## Uninstall
 
-1. Nếu bạn đã bấm "Cài hook" trong app, hãy bấm "Gỡ hook" trước. Lệnh hook trỏ tới vị trí của app nên sẽ hỏng khi app bị xóa hoặc dời chỗ.
-2. Thoát `Agent Workspace`.
-3. Kéo `Agent Workspace` từ thư mục Applications vào Thùng rác.
-4. Xoá mục `pet_task_manager` trong `~/.claude.json`, `~/.codex/config.toml` và `~/.gemini/config/mcp_config.json`. Mục này trỏ tới app nên sẽ hỏng khi app bị xoá.
-5. Nếu muốn xóa cả dữ liệu của app, xóa thư mục `~/Library/Application Support/Agent Workspace`.
+1. If you clicked "Install hook" in the app, click "Remove hook" first. The hook command points to the app's location and will break if the app is deleted or moved.
+2. Quit `Agent Workspace`.
+3. Drag `Agent Workspace` from Applications to the Trash.
+4. Remove the `pet_task_manager` entry from `~/.claude.json`, `~/.codex/config.toml` and `~/.gemini/config/mcp_config.json`. This entry points to the app and will break when the app is deleted.
+5. To remove the app's data too, delete `~/Library/Application Support/Agent Workspace`.
 
-## Hỏi và báo lỗi
+## Questions and bug reports
 
-Mở một issue ở https://github.com/dat08101999/agent-workspace/issues.
+Open an issue at https://github.com/dat08101999/agent-workspace/issues.
 
-Khi báo lỗi, hãy ghi phiên bản app, phiên bản macOS, chat chạy ở nhà cung cấp nào, các bước bạn đã làm và điều bạn thấy. Đừng dán token hay nội dung chat nhạy cảm vào issue.
+When reporting a bug, include the app version, macOS version, the chat's provider, the steps you took and what you saw. Don't paste tokens or sensitive chat content into an issue.
