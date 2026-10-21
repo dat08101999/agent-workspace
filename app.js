@@ -1,3 +1,4 @@
+const siteText = (id, values = {}) => window.SITE_TEXT[id].replace(/\{(\w+)\}/g, (_, name) => values[name]);
 const $ = id => document.getElementById(id);
 const el = (tag, cls = '', text = '') => { const node = document.createElement(tag); node.className = cls; node.textContent = text; return node; };
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches, small = matchMedia('(max-width: 759px)');
@@ -19,15 +20,15 @@ const LAYOUT = {
   // Màn hẹp: sàn nằm phẳng, bốn bàn xếp hai hàng hai cột, bóng thoại canh giữa cột.
   narrow: { w: 700, h: 930, flat: true, floor: [700, 930, 0], at: [[175, 380], [525, 380], [175, 830], [525, 830]], desk: -20, stand: 28, decor: [] },
 };
-const LABEL = { run: 'ĐANG LÀM', approve: 'CẦN DUYỆT', ask: 'CÓ CÂU HỎI', done: 'VỪA XONG', idle: 'RẢNH', stopped: 'ĐÃ DỪNG', denied: 'ĐÃ TỪ CHỐI' };
+const LABEL = { run: siteText('demo.text1'), approve: siteText('demo.text2'), ask: siteText('demo.text3'), done: siteText('demo.text4'), idle: siteText('demo.text5'), stopped: siteText('demo.text6'), denied: siteText('demo.text7') };
 // Trong app, dấu "!" là "cần bạn" (chờ duyệt, chờ trả lời, hoặc lượt bị lỗi) và dấu "✓" là vừa xong, chưa xem.
 const MARK = { approve: '! ', ask: '! ', done: '✓ ' };
 // Kịch bản mẫu. Câu hỏi và yêu cầu duyệt đến từ Claude Code, vì đó là những thứ app hiện thành thẻ để trả lời.
 const start = () => [
-  { id: 'codex', who: 'CODEX', task: 'Viết test cho giỏ hàng', look: 'c1.codex', state: 'run', kid: true, steps: ['Đang đọc src/cart.js', 'Đang viết test/cart.test.js', 'Đang chờ agent con chạy test', 'Đang sửa test/cart.test.js'] },
-  { id: 'claude', who: 'CLAUDE CODE', task: 'Sửa giá sau giảm', look: 'c0.claude', state: 'approve', short: 'Sửa src/price.js' },
-  { id: 'claude2', who: 'CLAUDE CODE', task: 'Thêm mã giảm giá', look: 'c1.claude', state: 'ask', short: 'Mã hết hạn thì làm gì?' },
-  { id: 'anti', who: 'ANTIGRAVITY', task: 'Dọn README', look: 'c1.antigravity', state: 'done', result: 'Đã gọn README · 52s', last: 'Đã rút gọn README. Mục Cài đặt vẫn ở đó.' },
+  { id: 'codex', who: siteText('demo.text8'), task: siteText('demo.text9'), look: 'c1.codex', state: 'run', kid: true, steps: [siteText('demo.text10'), siteText('demo.text11'), siteText('demo.text12'), siteText('demo.text13')] },
+  { id: 'claude', who: siteText('demo.text14'), task: siteText('demo.text15'), look: 'c0.claude', state: 'approve', short: siteText('demo.text16') },
+  { id: 'claude2', who: siteText('demo.text17'), task: siteText('demo.text18'), look: 'c1.claude', state: 'ask', short: siteText('demo.text19') },
+  { id: 'anti', who: siteText('demo.text20'), task: siteText('demo.text21'), look: 'c1.antigravity', state: 'done', result: siteText('demo.text22'), last: siteText('demo.text23') },
 ];
 let agents = start(), opened = '', mode = '', shown = '', focus = '', touched = false, sofa = null;
 const waiting = a => a.state === 'approve' || a.state === 'ask';
@@ -41,19 +42,19 @@ function request(a) {
   const box = el('div', 'req');
   const button = (text, run, cls = '') => { const one = el('button', cls, text); one.onclick = () => { touched = true; run(); focusCard(); }; box.append(one); };
   if (a.state === 'approve') {
-    box.innerHTML = '<h4>Claude muốn sửa <code>src/price.js</code></h4><div class="diff"><span class="d">  return price * discount</span>\n<span class="a">  return price * (1 - discount)</span></div>';
-    button('Có', () => work(a, ['Đang sửa src/price.js', 'Đang chạy node test'], 'Bốn test qua · 38s', 'Đã sửa công thức giá sau giảm. Bốn test đều qua.'), 'yes');
-    button('Không', () => rest(a, 'denied'));
+    box.innerHTML = siteText('demo.text24');
+    button(siteText('demo.text25'), () => work(a, [siteText('demo.text26'), siteText('demo.text27')], siteText('demo.text28'), siteText('demo.text29')), 'yes');
+    button(siteText('demo.text30'), () => rest(a, 'denied'));
   } else if (a.state === 'ask') {
-    box.append(el('h4', '', 'Mã giảm giá đã hết hạn thì nên làm gì?'));
-    button('Báo lỗi cho người mua', () => work(a, ['Đang sửa src/discount.js', 'Đang chạy node test'], 'Năm test qua · 31s', 'Mã hết hạn giờ báo lỗi cho người mua. Năm test đều qua.'));
-    button('Bỏ qua mã đó', () => work(a, ['Đang sửa src/discount.js', 'Đang chạy node test'], 'Năm test qua · 29s', 'Mã hết hạn giờ được bỏ qua, giá giữ nguyên. Năm test đều qua.'));
+    box.append(el('h4', '', siteText('demo.text31')));
+    button(siteText('demo.text32'), () => work(a, [siteText('demo.text33'), siteText('demo.text34')], siteText('demo.text35'), siteText('demo.text36')));
+    button(siteText('demo.text37'), () => work(a, [siteText('demo.text38'), siteText('demo.text39')], siteText('demo.text40'), siteText('demo.text41')));
   } else if (a.state === 'done') {
     box.append(el('h4', '', a.last));
-    button('Đánh dấu đã xem', () => { a.state = 'idle'; settle(a); });
+    button(siteText('demo.text42'), () => { a.state = 'idle'; settle(a); });
   } else {
-    box.append(el('h4', '', `“${a.task}” đang chạy.`));
-    button('Dừng', () => { a.kid = false; rest(a, 'stopped'); });
+    box.append(el('h4', '', siteText('demo.runningTask', {task: a.task})));
+    button(siteText('demo.text43'), () => { a.kid = false; rest(a, 'stopped'); });
   }
   return box;
 }
@@ -111,11 +112,11 @@ function paint(a) {
     eye.style.cssText = `left:${(cx - 9) * 3}px;top:-159px;width:54px;height:33px`;
     bb.append(sp('mini', cx, -12), eye, sp('kid.codex.back', cx, 0, 'bob'), link(plan.desk * 3 + 34, -150, cx * 3 - 24, -74));
   }
-  const tag = el('div', 'tag', a.who); tag.append(el('small', '', LABEL[a.state] + (child ? ' · 1 AGENT CON' : ''))); bb.append(tag);
+  const tag = el('div', 'tag', a.who); tag.append(el('small', '', LABEL[a.state] + (child ? siteText('demo.childBadge') : ''))); bb.append(tag);
   seat();
   if (a.state === 'idle') return;
 
-  const words = sits ? a.steps[0] : needs ? a.short : a.state === 'done' ? a.result : a.state === 'stopped' ? 'Đã dừng lượt này.' : 'Không sửa gì.';
+  const words = sits ? a.steps[0] : needs ? a.short : a.state === 'done' ? a.result : a.state === 'stopped' ? siteText('demo.text44') : siteText('demo.text45');
   const bub = el('div', 'bub'), short = el('span', 'short' + (sits ? ' live' : ''), words);
   bub.style.cssText = plan.flat ? 'left:0;bottom:219px' : sits ? `left:${plan.desk * 3}px;bottom:219px` : `left:${plan.stand * 3}px;bottom:156px`;
   if (!plan.flat && a.n === agents.length - 1) bub.classList.add('rightmost');
@@ -165,12 +166,12 @@ function update() {
   if (!current || !opens(current)) { const next = left[0] ? left[0].id : ''; if (next !== opened) { opened = next; redraw = true; } }
   if (focus && !count(focus)) { focus = ''; redraw = true; }
   if (redraw) agents.forEach(paint);
-  const head = ['Không ai phải chờ bạn.', 'Một đang chờ bạn.', 'Hai đang chờ bạn.'][left.length];
+  const head = [siteText('demo.text46'), siteText('demo.text47'), siteText('demo.text48')][left.length];
   document.body.classList.toggle('calm', !left.length);
-  if (head !== shown) { shown = head; decode($('needs'), head); $('say').textContent = 'Bốn agent, một cửa sổ. ' + head; }
+  if (head !== shown) { shown = head; decode($('needs'), head); $('say').textContent = siteText('demo.text49') + head; }
   // Hàng đếm như trong app: bấm một ô để làm nổi các Agent đó, bấm lại để bỏ.
   const kids = agents.filter(a => a.kid && a.state === 'run').length;
-  $('chips').replaceChildren(...[['need', 'Cần bạn'], ['fresh', 'Vừa xong'], ['run', 'Đang làm' + (kids ? ' · ' + kids + ' agent con' : '')], ['idle', 'Rảnh']].filter(([k]) => count(k)).map(([k, text]) => {
+  $('chips').replaceChildren(...[['need', siteText('demo.text50')], ['fresh', siteText('demo.text51')], ['run', siteText('demo.text52') + (kids ? ' · ' + kids + siteText('demo.childCount') : '')], ['idle', siteText('demo.text53')]].filter(([k]) => count(k)).map(([k, text]) => {
     const chip = el('button', 'chip ' + k + (focus === k ? ' on' : ''), count(k) + ' ' + text);
     chip.setAttribute('aria-pressed', focus === k);
     chip.onclick = () => { focus = focus === k ? '' : k; agents.forEach(paint); update(); };
@@ -210,9 +211,9 @@ $('again').onclick = () => {
 };
 
 // Chú giải, theo chú thích của mẫu "Văn phòng Agent" trong app: cần bạn, vừa xong, đang gọi agent con, đang làm, rảnh, chưa rõ.
-for (const [frame, title, text, cls] of [['c1.codex.sit', 'Đang làm', 'Ngồi gõ ở bàn, màn hình chạy chữ.'], ['kid.codex.front', 'Đang gọi agent con', 'Robot ngồi bàn phụ, có đường nối về agent đã gọi nó.'],
-  ['c0.claude.wave1', 'Cần bạn', 'Đứng vẫy tay, có dấu\u00a0!: chờ bạn duyệt, trả lời, hoặc lượt bị lỗi.'], ['c1.antigravity.front', 'Vừa xong', 'Dấu ✓ còn đó tới khi bạn mở xem.'],
-  ['c1.claude.sofaDrink', 'Rảnh', 'Rời bàn: ra sofa, đi lại, uống cà phê.'], ['c0.codex.front', 'Chưa rõ', 'App chưa đọc được trạng thái; nhân vật mờ đi.', 'rest']]) {
+for (const [frame, title, text, cls] of [['c1.codex.sit', siteText('demo.text54'), siteText('demo.text55')], ['kid.codex.front', siteText('demo.text56'), siteText('demo.text57')],
+  ['c0.claude.wave1', siteText('demo.text58'), siteText('demo.text59')], ['c1.antigravity.front', siteText('demo.text60'), siteText('demo.text61')],
+  ['c1.claude.sofaDrink', siteText('demo.text62'), siteText('demo.text63')], ['c0.codex.front', siteText('demo.text64'), siteText('demo.text65'), 'rest']]) {
   const item = el('div'), words = el('span'), pic = el('span', 'pic'); words.append(el('b', '', title), text); pic.append(sp(frame, 0, 0, cls || '', 2, false)); item.append(pic, words); $('legend').append(item);
 }
 
@@ -223,7 +224,7 @@ function turnPlayer(log, state, steps, { after, loop = true } = {}) {
   const line = (text, cls = '') => log.appendChild(el('li', cls, text));
   const wait = (ms, run) => timers.push(setTimeout(run, ms));
   function turn() {
-    log.textContent = ''; state.textContent = 'ĐANG CHẠY'; log.parentNode.classList.remove('halted');
+    log.textContent = ''; state.textContent = siteText('demo.text66'); log.parentNode.classList.remove('halted');
     if (still) { steps.forEach(step => line(step[1])); if (after) after({ line, wait, at: 0, still: true }); return; }
     let at = 400;
     for (const [doing, done, ms] of steps) { let li; wait(at, () => { li = line(doing, 'now'); }); wait(at += ms, () => { li.textContent = done; li.className = ''; }); at += 300; }
@@ -232,28 +233,28 @@ function turnPlayer(log, state, steps, { after, loop = true } = {}) {
   }
   return { start() { this.stop(); turn(); }, stop() { timers.forEach(clearTimeout); timers = []; }, line };
 }
-const solo = turnPlayer($('sololog'), $('solostate'), [['Đang đọc README.md', 'Đã đọc README.md', 1200], ['Đang sửa README.md', 'Đã sửa README.md +4 −12', 1700], ['Đang chạy npm test', 'Đã chạy npm test', 1500]]);
+const solo = turnPlayer($('sololog'), $('solostate'), [[siteText('demo.text67'), siteText('demo.text68'), 1200], [siteText('demo.text69'), siteText('demo.text70'), 1700], [siteText('demo.text71'), siteText('demo.text72'), 1500]]);
 solo.start();
 $('stop').onclick = () => {
   const halted = $('solo').classList.contains('halted');
   if (halted) solo.start();
-  else { solo.stop(); $('sololog').querySelectorAll('.now').forEach(li => { li.className = ''; }); solo.line('Đã dừng lượt này.', 'end'); $('solostate').textContent = 'ĐÃ DỪNG'; $('solo').classList.add('halted'); }
-  $('stop').textContent = halted ? 'Dừng' : 'Chạy lại';
+  else { solo.stop(); $('sololog').querySelectorAll('.now').forEach(li => { li.className = ''; }); solo.line(siteText('demo.text73'), 'end'); $('solostate').textContent = siteText('demo.text74'); $('solo').classList.add('halted'); }
+  $('stop').textContent = halted ? siteText('demo.text75') : siteText('demo.text76');
 };
 // Mẫu "Tiếp": lượt đang chạy, một tin mới được gõ và gửi, việc đi tiếp theo tin đó.
-const MORE = 'Thêm test cho trường hợp giảm giá âm';
-const duo = turnPlayer($('duolog'), $('duostate'), [['Đang đọc src/cart.js', 'Đã đọc src/cart.js', 1100]], {
+const MORE = siteText('demo.text77');
+const duo = turnPlayer($('duolog'), $('duostate'), [[siteText('demo.text78'), siteText('demo.text79'), 1100]], {
   after({ line, wait, at, still: fixed }) {
     const box = $('duobox'), text = $('duotext');
     text.textContent = ''; text.className = ''; box.classList.remove('ready');
-    if (fixed) { line(MORE, 'you'); line('Đã sửa test/cart.test.js +18'); $('duostate').textContent = 'ĐÃ XONG'; return 0; }
+    if (fixed) { line(MORE, 'you'); line(siteText('demo.text80')); $('duostate').textContent = siteText('demo.text81'); return 0; }
     let now;
-    wait(at, () => { now = line('Đang viết test/cart.test.js', 'now'); });
+    wait(at, () => { now = line(siteText('demo.text82'), 'now'); });
     [...MORE].forEach((ch, n) => wait(at + 700 + n * 55, () => { text.className = 'typing-now'; text.textContent += ch; box.classList.add('ready'); }));
     at += 700 + MORE.length * 55 + 600;
     wait(at, () => { text.textContent = ''; text.className = ''; box.classList.remove('ready'); line(MORE, 'you'); });
-    wait(at += 1500, () => { now.textContent = 'Đã viết test/cart.test.js'; now.className = ''; now = line('Đang thêm test giảm giá âm', 'now'); });
-    wait(at += 1900, () => { now.textContent = 'Đã sửa test/cart.test.js +18'; now.className = ''; line('Xong · bảy test qua', 'end'); $('duostate').textContent = 'ĐÃ XONG'; });
+    wait(at += 1500, () => { now.textContent = siteText('demo.text83'); now.className = ''; now = line(siteText('demo.text84'), 'now'); });
+    wait(at += 1900, () => { now.textContent = siteText('demo.text85'); now.className = ''; line(siteText('demo.text86'), 'end'); $('duostate').textContent = siteText('demo.text87'); });
     return at + 1800;
   },
 });
@@ -299,11 +300,11 @@ if ('IntersectionObserver' in window && !still) {
     if (!reply.ok) return;
     const release = await reply.json(), asset = (release.assets || []).find(one => one.name === 'Agent-Workspace-arm64.dmg');
     if (!asset) return;
-    const info = { version: String(release.tag_name || '').replace(/^v/, ''), size: Math.round(asset.size / 1e6) + ' MB', sha: String(asset.digest || '').replace(/^sha256:/, '') };
+    const info = { version: String(release.tag_name || '').replace(/^v/, ''), size: Math.round(asset.size / 1e6) + siteText('demo.text88'), sha: String(asset.digest || '').replace(/^sha256:/, '') };
     show(info);
     try { sessionStorage.setItem('aw-release', JSON.stringify(info)); } catch { /* như trên */ }
   } catch { /* Trang vẫn đúng với số ghi sẵn. */ }
 })();
 
-decode($('line1'), 'Bốn agent, một cửa sổ.');
+decode($('line1'), siteText('demo.text89'));
 build();

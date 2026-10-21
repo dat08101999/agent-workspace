@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Workspace: Claude Code, Codex y Antigravity en una ventana</title>
+<meta name="description" content="Agent Workspace es una app para macOS que reúne Claude Code, Codex y Antigravity en una ventana, para que veas qué agentes están trabajando y cuáles te esperan.">
+<meta name="theme-color" content="#070707">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://dat08101999.github.io/agent-workspace/es/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Agent Workspace: Claude Code, Codex y Antigravity en una ventana">
+<meta property="og:description" content="Una app para macOS que te permite ver qué agentes están trabajando y cuáles te esperan, responder desde la app y detener un turno cuando lo necesites.">
+<meta property="og:url" content="https://dat08101999.github.io/agent-workspace/es/">
+<meta property="og:image" content="https://dat08101999.github.io/agent-workspace/assets/og.es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Una oficina pixel art con cuatro agentes: uno trabaja con un subagente, dos te saludan para llamar tu atención y otro acaba de terminar.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dat08101999.github.io/agent-workspace/assets/og.es.png">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Chakra+Petch:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/atlas.png" as="image">
+<link rel="stylesheet" href="../style.css">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="alternate" hreflang="en" href="https://dat08101999.github.io/agent-workspace/">
+<link rel="alternate" hreflang="vi" href="https://dat08101999.github.io/agent-workspace/vi/">
+<link rel="alternate" hreflang="es" href="https://dat08101999.github.io/agent-workspace/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://dat08101999.github.io/agent-workspace/pt-BR/">
+<link rel="alternate" hreflang="fr" href="https://dat08101999.github.io/agent-workspace/fr/">
+<link rel="alternate" hreflang="de" href="https://dat08101999.github.io/agent-workspace/de/">
+<link rel="alternate" hreflang="x-default" href="https://dat08101999.github.io/agent-workspace/">
+<script>
+(() => {
+const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"], ["es", "Español", "es-ES"], ["pt-BR", "Português (Brasil)", "pt-BR"], ["fr", "Français", "fr-FR"], ["de", "Deutsch", "de-DE"]];
+})();
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#hero" aria-label="Agent Workspace, volver al principio"><i class="mark"></i>Agent Workspace</a>
+    <nav aria-label="Secciones de la página">
+      <a href="#phim">Vídeo</a>
+      <a href="#thay">Ver</a>
+      <a href="#duyet">Aprobar</a>
+      <a href="#dung">Detener</a>
+      <a href="#tiep">Continuar</a>
+      <a href="#cai-dat">Instalar</a>
+      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Descargar para Mac</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Phần mở đầu là bản dùng thử: một văn phòng với bốn Agent của app, mỗi Agent ở một trạng thái thật. -->
+  <section class="hero" id="hero" aria-labelledby="say">
+    <div class="hero-top">
+      <h1 class="copy">
+        <span class="sr" id="say" aria-live="polite">Cuatro agentes, una ventana. Dos te esperan.</span>
+        <span class="l" id="line1" aria-hidden="true">Cuatro agentes, una ventana.</span>
+        <span class="l needs" id="needs" aria-hidden="true">Dos te esperan.</span>
+      </h1>
+      <div class="side">
+        <p>Agent Workspace reúne Claude Code, Codex y Antigravity en una ventana de tu Mac. Mira qué agentes están trabajando y cuáles te esperan, responde desde la app y detén un turno cuando lo necesites.</p>
+        <div class="cta">
+          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Descargar para Mac</a>
+          <a class="more" href="#phim">▸ Ver el vídeo</a>
+        </div>
+        <p class="fine">macOS · Apple silicon · versión <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+      </div>
+    </div>
+    <div id="room"><div class="stage" id="stage"><div class="floor" id="floor"></div></div></div>
+    <div class="dock" id="dock" aria-live="polite" hidden></div>
+    <div class="hero-bar">
+      <span class="label name">Carpeta gio-hang</span>
+      <span class="chips" id="chips" aria-label="Número de agentes por estado"></span>
+      <span class="label hint" id="hint">Pruébalo: haz clic en un agente que te saluda para responderle.</span>
+      <button class="again" id="again" hidden>Empezar de nuevo</button>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="legend" id="legend" aria-label="Cómo muestra un agente su estado en la Oficina de agentes de la app"></div>
+  </div>
+
+  <section class="block wrap" id="phim">
+    <div class="head reveal">
+      <span class="label">Vídeo</span>
+      <h2>La interfaz real de la app</h2>
+      <p class="lead">Una grabación de la interfaz real de Agent Workspace, con datos de ejemplo. Cuatro capítulos muestran cuatro acciones: ver, aprobar, detener y continuar.</p>
+    </div>
+    <div class="filmbox">
+    <div class="film reveal">
+      <video id="film" controls playsinline muted preload="none" poster="../assets/film-poster.jpg" aria-label="Vídeo de Agent Workspace: ver, aprobar, detener y continuar">
+        <source src="../assets/film.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="chapters reveal" id="chapters">
+      <button class="chapter" data-id="thay"><b><span>01</span>Ver</b>La barra lateral muestra qué chats están trabajando y cuáles te esperan.</button>
+      <button class="chapter" data-id="duyet"><b><span>02</span>Aprobar</b>Al editar archivos, la tarjeta de aprobación muestra las líneas eliminadas y añadidas.</button>
+      <button class="chapter" data-id="dung"><b><span>03</span>Detener</b>Detén un turno en curso; se marca como «Este turno se detuvo.»</button>
+      <button class="chapter" data-id="tiep"><b><span>04</span>Continuar</b>Envía otro mensaje mientras hay un turno en curso.</button>
+    </div>
+    <p class="label film-note">Vídeo sin sonido · los nombres de carpetas y archivos, y los mensajes del vídeo son datos de ejemplo</p>
+    </div>
+  </section>
+
+  <section class="block wrap" id="viec">
+    <div class="head reveal">
+      <span class="label">Cuatro acciones</span>
+      <h2>Ver, aprobar, detener y continuar.</h2>
+      <p class="lead">Cuatro cosas que puedes hacer con un agente, cada una con una pequeña demostración. Lo que necesita tu atención aparece primero.</p>
+    </div>
+
+    <article class="verb reveal" id="thay">
+      <div class="ex-stage" aria-hidden="true"><div class="rows">
+        <div><span>Escribir pruebas para el carrito<small>CODEX · EN CURSO</small></span></div>
+        <div class="up"><span>Corregir el precio con descuento<small>CLAUDE CODE · TE ESPERA</small></span><b>!</b></div>
+        <div><span>Ordenar README<small>ANTIGRAVITY · EN CURSO</small></span></div>
+        <div><span>Añadir códigos de descuento<small>CODEX · TERMINADO</small></span></div>
+      </div></div>
+      <div class="words">
+        <span class="label">01 Ver</span>
+        <h3>Mira qué agentes te esperan</h3>
+        <p>La barra lateral reúne tus chats. «Oficina de agentes» representa cada agente como un personaje pixel art que refleja su estado real.</p>
+        <ul class="points">
+          <li>La barra lateral indica qué chats están en curso y cuáles te esperan (con el signo «!»), además de un contador de «N te necesitan».</li>
+          <li>Cuando la ventana está en segundo plano y un agente te hace una pregunta, macOS muestra una notificación; el icono del Dock indica cuántos chats te esperan.</li>
+          <li>Cuando termina un turno, macOS avisa que ya terminó. Puedes desactivar esta opción en el menú de la app, en «Avisar cuando termine el agente»; las notificaciones de preguntas siguen activadas.</li>
+          <li>Después de cada turno, un bloque enumera los archivos editados. Haz clic en un archivo para abrirlo en la columna derecha.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="verb reveal" id="duyet">
+      <div class="ex-stage" aria-hidden="true"><div class="code"><div>function finalPrice(price, discount) {</div><div class="del">  return price * discount</div><div class="add">  return price * (1 - discount)</div><div>}</div></div></div>
+      <div class="words">
+        <span class="label">02 Aprobar</span>
+        <h3>Aprueba desde la app</h3>
+        <p>Las solicitudes de permisos de Claude Code, Codex y Antigravity aparecen como tarjetas en la app. Respóndelas ahí mismo.</p>
+        <ul class="points">
+          <li>Al editar archivos, la tarjeta muestra los cambios como líneas eliminadas y añadidas.</li>
+          <li>Las preguntas y los planes de Claude Code también aparecen ahí para que respondas.</li>
+          <li>También aparecen las preguntas de un subagente de Claude que trabaja en segundo plano.</li>
+        </ul>
+      </div>
+      <figure class="real">
+        <img src="../assets/duyet.png" width="1130" height="316" loading="lazy" alt="Tarjeta de aprobación en la app: Claude quiere editar README.md; hay una línea eliminada, una añadida y las opciones Sí y No.">
+        <figcaption class="label">Tarjeta de aprobación en la app</figcaption>
+      </figure>
+    </article>
+
+    <article class="verb reveal" id="dung">
+      <div class="ex-stage">
+        <div class="panel" id="solo" aria-hidden="true"><div class="ph"><span>ANTIGRAVITY</span><span id="solostate">EN CURSO</span></div><ul class="log" id="sololog"></ul></div>
+        <button id="stop">Detener</button>
+      </div>
+      <div class="words">
+        <span class="label">03 Detener</span>
+        <h3>Detén un turno en curso</h3>
+        <p>Si un agente va por mal camino, detén el turno desde la app. Prueba a hacer clic en «Detener» en esta demostración.</p>
+        <ul class="points">
+          <li>Puedes detener un turno en curso.</li>
+          <li>Un turno detenido se marca como «Este turno se detuvo.»</li>
+          <li>Si falla un turno, se muestra el motivo que indica el proveedor.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="verb reveal" id="tiep">
+      <div class="ex-stage" aria-hidden="true">
+        <div class="panel" id="duo"><div class="ph"><span>CODEX</span><span id="duostate">EN CURSO</span></div><ul class="log" id="duolog"></ul><div class="composer" id="duobox"><span id="duotext"></span><i>↑</i></div></div>
+      </div>
+      <div class="words">
+        <span class="label">04 Continuar</span>
+        <h3>Envía otro mensaje durante un turno</h3>
+        <p>No tienes que esperar a que termine un turno para seguir hablando, y recargar la página no lo hará desaparecer.</p>
+        <ul class="points">
+          <li>Envía otro mensaje mientras hay un turno en curso.</li>
+          <li>Recarga la página sin perder el turno en curso.</li>
+          <li>Cada chat tiene su propia opción de entorno de ejecución (Claude Code, Codex o Antigravity), modelo y esfuerzo.</li>
+          <li>Un chat en borrador no crea nada en el proveedor hasta que envías el primer mensaje.</li>
+          <li>Edita un mensaje enviado o bifurca desde un mensaje para probar otra dirección.</li>
+          <li>Adjunta imágenes, PDF y archivos de texto; activa o desactiva servidores MCP en el cuadro de redacción.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="block wrap" id="cach-hoat-dong">
+    <div class="head reveal">
+      <span class="label">Cómo funciona</span>
+      <h2>La app se ejecuta en tu propio equipo</h2>
+      <p class="lead">La app es una ventana nativa que contiene una página web que se ejecuta en tu equipo. Un servidor pequeño sirve esa página y la app lo inicia por sí misma. El servidor se comunica con las herramientas de los proveedores en tu equipo.</p>
+    </div>
+    <div class="flow reveal">
+      <div class="mac">
+        <span class="label">En tu Mac</span>
+        <div class="node"><b>Ventana de la app</b><span>Una ventana nativa que contiene una página web ejecutada en tu equipo.</span></div>
+        <i class="wire"><i></i></i>
+        <div class="node"><b>Servidor local</b><code>127.0.0.1:5188</code><span>La app lo inicia y solo escucha en esta dirección.</span></div>
+        <i class="wire back"><i></i></i>
+        <div class="node"><b>Claude Code · Codex · Antigravity</b><span>Herramientas ya instaladas y con sesión iniciada en tu equipo.</span><span class="cast" data-cast="c0.claude.front c1.codex.front c1.antigravity.front" aria-hidden="true"></span></div>
+      </div>
+      <div class="outside">
+        <i class="wire"><i></i></i>
+        <div class="node ghost"><b>Proveedor</b><span>Tus propias herramientas envían el contenido de los chats, no la app.</span></div>
+      </div>
+    </div>
+    <ul class="facts reveal">
+      <li>La app no tiene una cuenta propia ni llama a ninguna API de modelos.</li>
+      <li>Todos los turnos se ejecutan mediante las herramientas del proveedor.</li>
+      <li>El token local, la base de datos y los logs están en <code>~/Library/Application Support/Agent Workspace</code>.</li>
+      <li>Si eliminas un chat o una carpeta en la app, no se elimina nada del proveedor.</li>
+    </ul>
+  </section>
+
+  <section class="block wrap" id="cai-dat">
+    <div class="head reveal">
+      <span class="label">Instalar</span>
+      <h2>Instala Agent Workspace</h2>
+      <p class="lead">Un archivo DMG. No necesitas instalar .NET ni Node: el servidor viene incluido en la app.</p>
+    </div>
+    <div class="install reveal">
+      <div>
+        <h4 class="sub">Qué necesitas</h4>
+        <ul class="bare">
+          <li>Un Mac con Apple silicon.</li>
+          <li><code>python3</code> en tu equipo. La versión de Xcode Command Line Tools es suficiente; si no la tienes, ejecuta <code>xcode-select --install</code>.</li>
+          <li>Al menos una herramienta instalada y con sesión iniciada: Claude Code, Codex o Antigravity.</li>
+        </ul>
+        <div class="get" id="tai-ngay">
+          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Descargar para Mac</a>
+          <p class="fine">Archivo de instalación para Mac: Agent-Workspace-arm64.dmg · versión <span data-rel="version">1.0.4</span> · tamaño <span data-rel="size">65 MB</span><br>Huella digital de verificación SHA-256 <code data-rel="sha">a51194c8b27582f66d8a30338f094756a9064159987ef377dc197adf898a90d2</code></p>
+        </div>
+      </div>
+      <div>
+        <h4 class="sub">Tres pasos</h4>
+        <ol class="steps">
+          <li><b>Descarga el DMG</b>Haz clic en «Descargar para Mac» o consigue <code>Agent-Workspace-arm64.dmg</code> desde <a href="https://github.com/dat08101999/agent-workspace/releases">Versiones</a> en GitHub.</li>
+          <li><b>Arrastra a Aplicaciones</b>Abre el DMG y arrastra Agent Workspace a Aplicaciones.</li>
+          <li><b>Ábrela por primera vez</b>Abre Agent Workspace desde Aplicaciones. La primera vez, macOS la bloqueará y dirá que no se puede verificar la app.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="gate reveal">
+      <div>
+        <h3>macOS bloqueará la app la primera vez</h3>
+        <p>La app no está firmada con un Apple Developer ID ni notarizada por Apple, así que macOS la bloquea la primera vez. Después, puedes abrirla normalmente.</p>
+      </div>
+      <div>
+        <h4 class="sub">Permite abrirla</h4>
+        <ol class="steps">
+          <li>Cierra el aviso. Abre Ajustes del Sistema → Privacidad y seguridad.</li>
+          <li>Desplázate hasta Seguridad. Verás un mensaje que indica que Agent Workspace se ha bloqueado.</li>
+          <li>Haz clic en «Abrir de todos modos».</li>
+          <li>Cuando macOS lo pida, confirma con la contraseña de tu Mac o Touch ID y vuelve a abrir la app.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="first reveal">
+      <div>
+        <h3>Primer inicio</h3>
+        <ol class="steps">
+          <li>Añade una carpeta: usa «Añadir carpeta» al final de la lista de carpetas de la barra lateral.</li>
+          <li>Abre un chat en esa carpeta con el signo «+» junto a su nombre.</li>
+          <li>Elige dónde se ejecuta el chat (Claude Code, Codex o Antigravity) y, después, el modelo y el nivel de esfuerzo.</li>
+          <li>Escribe y envía tu primer mensaje. Solo entonces la app crea la conversación en el proveedor.</li>
+        </ol>
+      </div>
+      <div>
+        <figure>
+          <img src="../assets/lan-mo-dau.png" width="1440" height="900" loading="lazy" alt="Agent Workspace al iniciarse por primera vez: la barra lateral aún no tiene carpetas y muestra Añadir carpeta.">
+          <figcaption class="label">La app al iniciarse por primera vez, sin carpetas</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block wrap" id="noi-thang">
+    <div class="head reveal">
+      <span class="label">En pocas palabras</span>
+      <h2>Lo que la app aún no puede hacer</h2>
+      <p class="lead">Te lo contamos de antemano para que no haya sorpresas después de la descarga.</p>
+    </div>
+    <div class="honest reveal">
+      <div><b>Inicio de sesión en MCP de Claude</b><span>La app aún no permite iniciar sesión en los servidores MCP de Claude Code; usa /mcp en Claude Code.</span></div>
+      <div><b>Solo para Apple silicon</b><span>Solo disponible para macOS en Apple silicon.</span></div>
+      <div><b>Sin firma ni notarización</b><span>La app no está firmada con un Apple Developer ID ni notarizada por Apple, así que la primera vez tendrás que seguir los pasos de «Abrir de todos modos».</span></div>
+      <div><b>Probada en pocos equipos</b><span>La app solo se ha probado en unos pocos equipos. Si no se abre, repórtalo en <a href="https://github.com/dat08101999/agent-workspace/issues">Issues</a>.</span></div>
+    </div>
+  </section>
+
+  <section class="block wrap" id="hoi-nhanh">
+    <div class="head reveal">
+      <span class="label">Preguntas rápidas</span>
+      <h2>Seis preguntas frecuentes</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>¿La app necesita una cuenta propia?</summary><p>No. Usa Claude Code, Codex y Antigravity, ya instalados y con sesión iniciada en tu equipo, y no llama a ninguna API de modelos.</p></details>
+      <details><summary>¿La app envía mi código a algún sitio?</summary><p>Tus propias herramientas Claude Code, Codex o Antigravity envían el contenido del chat, no la app. Cada turno se ejecuta con las herramientas del proveedor. El servidor de la app solo escucha en <code>127.0.0.1</code>.</p></details>
+      <details><summary>¿Al quitar un chat de la app se elimina también en el proveedor?</summary><p>No. Quitar un chat o una carpeta de la app no elimina nada del proveedor.</p></details>
+      <details><summary>¿Qué escribe la app fuera de su carpeta de datos?</summary><p>Solo cuando tú lo pides. Por ejemplo, al hacer clic en «Instalar hook» en «Fuente de estado», la app añade un hook de observación a <code>~/.claude/settings.json</code> (Claude Code) o a <code>~/.gemini/config/hooks.json</code> (Antigravity). «Quitar hook» lo elimina.</p></details>
+      <details><summary>¿Cómo la desinstalo?</summary><p>Si hiciste clic en «Instalar hook», haz clic primero en «Quitar hook». Cierra la app y arrastra Agent Workspace de Applications a la Papelera. Para eliminar también sus datos, borra la carpeta <code>~/Library/Application Support/Agent Workspace</code>.</p></details>
+      <details><summary>¿Dónde reporto un error?</summary><p>Abre un issue en <a href="https://github.com/dat08101999/agent-workspace/issues">Issues en GitHub</a>. Incluye las versiones de la app y macOS, el proveedor del chat, los pasos que seguiste y lo que viste. No pegues tokens ni contenido confidencial del chat.</p></details>
+    </div>
+  </section>
+
+  <section class="final" id="tai">
+    <h2 id="lastline">Entérate de qué agentes te están esperando.</h2>
+    <p class="lead">Descarga Agent Workspace para Mac con Apple silicon. La app no está firmada ni notarizada, así que la primera vez tendrás que hacer clic en «Abrir de todos modos».</p>
+    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Descargar para Mac</a>
+    <p class="fine">Agent-Workspace-arm64.dmg · versión <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+    <div class="lounge" aria-hidden="true"><div class="tiles"></div><div class="set" id="lounge"></div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#hero"><i class="mark"></i>Agent Workspace</a>
+    <nav class="label" aria-label="Enlaces externos">
+      <a href="https://github.com/dat08101999/agent-workspace#readme">Documentación</a>
+      <a href="https://github.com/dat08101999/agent-workspace/releases">Versiones</a>
+      <a href="https://github.com/dat08101999/agent-workspace/issues">Informar de un error</a>
+      <a href="privacy.html">Privacidad</a>
+    </nav>
+  </div>
+  <div class="wrap"><nav class="language-menu" aria-label="Idioma"><a href="../" lang="en" hreflang="en" data-language="en">English</a><a href="../vi/" lang="vi" hreflang="vi" data-language="vi">Tiếng Việt</a><a href="../es/" lang="es" hreflang="es" data-language="es" aria-current="page">Español</a><a href="../pt-BR/" lang="pt-BR" hreflang="pt-BR" data-language="pt-BR">Português (Brasil)</a><a href="../fr/" lang="fr" hreflang="fr" data-language="fr">Français</a><a href="../de/" lang="de" hreflang="de" data-language="de">Deutsch</a></nav></div>
+</footer>
+
+<script>window.SITE_TEXT = {"demo.text1": "TRABAJANDO", "demo.text2": "REQUIERE APROBACIÓN", "demo.text3": "TIENE UNA PREGUNTA", "demo.text4": "RECIÉN TERMINADO", "demo.text5": "INACTIVO", "demo.text6": "DETENIDO", "demo.text7": "RECHAZADO", "demo.text8": "CODEX", "demo.text9": "Escribir tests del carrito", "demo.text10": "Leyendo src/cart.js", "demo.text11": "Escribiendo test/cart.test.js", "demo.text12": "Esperando a que el subagente ejecute los tests", "demo.text13": "Editando test/cart.test.js", "demo.text14": "CLAUDE CODE", "demo.text15": "Corregir el precio con descuento", "demo.text16": "Editar src/price.js", "demo.text17": "CLAUDE CODE", "demo.text18": "Añadir códigos de descuento", "demo.text19": "¿Qué pasa si el código ha caducado?", "demo.text20": "ANTIGRAVITY", "demo.text21": "Ordenar README", "demo.text22": "README ordenado · 52s", "demo.text23": "README abreviado. La sección de instalación sigue ahí.", "demo.text24": "\u003ch4>Claude quiere editar \u003ccode>src/price.js\u003c/code>\u003c/h4>\u003cdiv class=\"diff\">\u003cspan class=\"d\">  return price * discount\u003c/span>\n\u003cspan class=\"a\">  return price * (1 - discount)\u003c/span>\u003c/div>", "demo.text25": "Sí", "demo.text26": "Editando src/price.js", "demo.text27": "Ejecutando node test", "demo.text28": "Cuatro tests superados · 38s", "demo.text29": "Corregida la fórmula del precio con descuento. Los cuatro tests se superaron.", "demo.text30": "No", "demo.text31": "¿Qué debería pasar cuando caduca un código de descuento?", "demo.text32": "Mostrar un error al comprador", "demo.text33": "Editando src/discount.js", "demo.text34": "Ejecutando node test", "demo.text35": "Cinco tests superados · 31s", "demo.text36": "Ahora se muestra un error al comprador si el código ha caducado. Los cinco tests se superaron.", "demo.text37": "Ignorar el código", "demo.text38": "Editando src/discount.js", "demo.text39": "Ejecutando node test", "demo.text40": "Cinco tests superados · 29s", "demo.text41": "Ahora se ignoran los códigos caducados y el precio no cambia. Los cinco tests se superaron.", "demo.text42": "Marcar como visto", "demo.text43": "Detener", "demo.text44": "Este turno se detuvo.", "demo.text45": "No se hicieron cambios.", "demo.text46": "Nadie te está esperando.", "demo.text47": "Uno te está esperando.", "demo.text48": "Dos te están esperando.", "demo.text49": "Cuatro agentes, una ventana. ", "demo.text50": "Te necesita", "demo.text51": "Recién terminado", "demo.text52": "Trabajando", "demo.text53": "Inactivo", "demo.text54": "Trabajando", "demo.text55": "Escribe en el escritorio, con texto en pantalla.", "demo.text56": "Llamando a un subagente", "demo.text57": "Un robot en un escritorio auxiliar, conectado al agente que lo llamó.", "demo.text58": "Te necesita", "demo.text59": "De pie y saludando, con un !: esperando tu aprobación o respuesta, o porque ha fallado un turno.", "demo.text60": "Recién terminado", "demo.text61": "El ✓ se queda hasta que lo abras.", "demo.text62": "Inactivo", "demo.text63": "Lejos del escritorio: sentado en el sofá, caminando, tomando café.", "demo.text64": "Desconocido", "demo.text65": "La app aún no ha leído el estado; el personaje se desvanece.", "demo.text66": "EN EJECUCIÓN", "demo.text67": "Leyendo README.md", "demo.text68": "Leído README.md", "demo.text69": "Editando README.md", "demo.text70": "Editado README.md +4 −12", "demo.text71": "Ejecutando npm test", "demo.text72": "Ejecutado npm test", "demo.text73": "Se detuvo este turno.", "demo.text74": "DETENIDO", "demo.text75": "Detener", "demo.text76": "Volver a ejecutar", "demo.text77": "Añadir un test para un descuento negativo", "demo.text78": "Leyendo src/cart.js", "demo.text79": "Leído src/cart.js", "demo.text80": "Editado test/cart.test.js +18", "demo.text81": "LISTO", "demo.text82": "Escribiendo test/cart.test.js", "demo.text83": "Escrito test/cart.test.js", "demo.text84": "Añadiendo un test de descuento negativo", "demo.text85": "Editado test/cart.test.js +18", "demo.text86": "Listo · siete tests superados", "demo.text87": "LISTO", "demo.text88": " MB", "demo.text89": "Cuatro agentes, una ventana.", "demo.runningTask": "“{task}” está en ejecución.", "demo.childBadge": " · 1 SUBAGENTE", "demo.childCount": " subagente"};</script>
+<script src="../app.js" defer></script>
+<script>
+document.querySelectorAll('[data-language]').forEach(link => {
+  link.addEventListener('click', () => {
+    try { localStorage.setItem('aw-site-language', link.dataset.language); } catch { /* Optional storage. */ }
+  });
+});
+</script>
+</body>
+</html>

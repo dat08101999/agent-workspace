@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quyền riêng tư · Agent Workspace</title>
+<meta name="description" content="Agent Workspace cho Mac và iPhone không thu thập dữ liệu. Mọi thứ ở trên Mac và iCloud của chính bạn.">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Quyền riêng tư · Agent Workspace">
+<meta property="og:description" content="Agent Workspace cho Mac và iPhone không thu thập dữ liệu. Mọi thứ ở trên Mac và iCloud của chính bạn.">
+<meta property="og:url" content="https://dat08101999.github.io/agent-workspace/vi/privacy.html">
+<meta name="theme-color" content="#070707">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://dat08101999.github.io/agent-workspace/vi/privacy.html">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Chakra+Petch:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .policy { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  .policy h1 { margin: 14px 0 8px; font: 600 clamp(30px, 4vw, 44px)/1.12 var(--display); }
+  .policy h2 { margin: 40px 0 10px; font-size: clamp(21px, 2.4vw, 26px); }
+  .policy p, .policy li { color: var(--moon-2); }
+  .policy strong { color: var(--moon); font-weight: 600; }
+  .policy ul { padding-left: 22px; }
+  .policy li { margin: 6px 0; }
+  .policy hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
+  .policy .date { margin-top: 0; }
+  @media (max-width: 600px) { .wrap { padding-left: 16px; padding-right: 16px; } .policy { padding: 40px 16px 64px; } }
+</style>
+<link rel="alternate" hreflang="en" href="https://dat08101999.github.io/agent-workspace/privacy.html">
+<link rel="alternate" hreflang="vi" href="https://dat08101999.github.io/agent-workspace/vi/privacy.html">
+<link rel="alternate" hreflang="es" href="https://dat08101999.github.io/agent-workspace/es/privacy.html">
+<link rel="alternate" hreflang="pt-BR" href="https://dat08101999.github.io/agent-workspace/pt-BR/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://dat08101999.github.io/agent-workspace/fr/privacy.html">
+<link rel="alternate" hreflang="de" href="https://dat08101999.github.io/agent-workspace/de/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://dat08101999.github.io/agent-workspace/privacy.html">
+<script>
+(() => {
+const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"], ["es", "Español", "es-ES"], ["pt-BR", "Português (Brasil)", "pt-BR"], ["fr", "Français", "fr-FR"], ["de", "Deutsch", "de-DE"]];
+})();
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Agent Workspace, về trang chủ"><i class="mark"></i>Agent Workspace</a>
+
+  </div>
+</header>
+
+<main class="policy">
+  <section>
+
+    <p class="label">Quyền riêng tư</p>
+    <h1>Agent Workspace không thu thập dữ liệu</h1>
+    <p class="date label">Cập nhật 17/10/2026</p>
+    <p>Agent Workspace là app cho Mac, kèm app đồng hành cho iPhone. App không có tài khoản và không có máy chủ nào của chúng tôi. Chúng tôi không thu thập, nhận, lưu hay bán bất kỳ thông tin nào về bạn hay việc bạn làm trong app. Không có phân tích sử dụng, quảng cáo hay theo dõi.</p>
+
+    <h2>Trên Mac</h2>
+    <ul>
+      <li>App giữ dữ liệu của nó (cơ sở dữ liệu cục bộ, log và một token truy cập cục bộ) ngay trên Mac của bạn, ở <code>~/Library/Application Support/Agent Workspace</code>. Server cục bộ chỉ nghe ở <code>127.0.0.1</code>.</li>
+      <li>Các hội thoại chạy trong công cụ bạn tự cài (Claude Code, Codex, Antigravity), bằng tài khoản của chính bạn ở các nhà cung cấp đó. Agent Workspace không tự gọi API model nào; những gì các công cụ đó gửi cho nhà cung cấp tuân theo điều khoản quyền riêng tư của nhà cung cấp.</li>
+      <li>Khi khởi động, app thêm một mục tên <code>pet_task_manager</code> vào cấu hình của từng công cụ đó, để hội thoại dùng được công cụ của app. App sao lưu tệp trước khi ghi và không thêm lại nếu bạn đã xoá mục đó.</li>
+    </ul>
+
+    <h2>Trên iPhone</h2>
+    <ul>
+      <li>App iPhone chỉ nói chuyện với Mac của chính bạn: nối thẳng bằng HTTPS khi hai máy cùng mạng; nếu không thì qua tài khoản iCloud của chính bạn, trong cơ sở dữ liệu riêng của container iCloud của app, nơi các tin được giữ trong trường mã hoá. Apple lưu dữ liệu iCloud đó theo chính sách quyền riêng tư của Apple; chúng tôi không truy cập được.</li>
+      <li>Thông báo về một hội thoại đến iPhone qua iCloud của bạn. Thông báo chỉ nói loại sự việc và tên hội thoại, không bao giờ có nội dung agent hay bạn đã viết.</li>
+      <li>Trên iPhone, app giữ thiết lập (giao diện sáng hay tối, thư mục nào đang mở), danh sách hội thoại lần trước để hiện ngay, và cách nối tới Mac của bạn. Xoá app là xoá hết chúng.</li>
+      <li>Ảnh và tệp bạn đính kèm trên iPhone chỉ đi tới Mac của chính bạn, nối thẳng qua Wi‑Fi hoặc qua iCloud của bạn, rồi từ đó tới provider của hội thoại, như khi bạn đính kèm trên Mac. Camera chỉ được dùng khi bạn chụp ảnh để đính kèm; bộ chọn ảnh chỉ đưa cho app những ảnh bạn chọn.</li>
+      <li>Bản xem thử ("Xem thử với dữ liệu mẫu") dùng dữ liệu bịa sẵn trong app và không gửi gì đi đâu.</li>
+    </ul>
+
+    <h2>Liên hệ</h2>
+    <p>Câu hỏi về chính sách này: mở issue ở <a href="https://github.com/dat08101999/agent-workspace/issues">github.com/dat08101999/agent-workspace/issues</a>. Nếu chính sách đổi, bản mới sẽ được đăng ở trang này kèm ngày cập nhật.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="./"><i class="mark"></i>Agent Workspace</a>
+    <nav class="label" aria-label="Liên kết ngoài">
+      <a href="https://github.com/dat08101999/agent-workspace#readme">Tài liệu</a>
+      <a href="https://github.com/dat08101999/agent-workspace/issues">Báo lỗi</a>
+    </nav>
+  </div>
+  <div class="wrap"><nav class="language-menu" aria-label="Ngôn ngữ"><a href="../privacy.html" lang="en" hreflang="en" data-language="en">English</a><a href="../vi/privacy.html" lang="vi" hreflang="vi" data-language="vi" aria-current="page">Tiếng Việt</a><a href="../es/privacy.html" lang="es" hreflang="es" data-language="es">Español</a><a href="../pt-BR/privacy.html" lang="pt-BR" hreflang="pt-BR" data-language="pt-BR">Português (Brasil)</a><a href="../fr/privacy.html" lang="fr" hreflang="fr" data-language="fr">Français</a><a href="../de/privacy.html" lang="de" hreflang="de" data-language="de">Deutsch</a></nav></div>
+</footer>
+<script>
+document.querySelectorAll('[data-language]').forEach(link => {
+  link.addEventListener('click', () => {
+    try { localStorage.setItem('aw-site-language', link.dataset.language); } catch { /* Optional storage. */ }
+  });
+});
+</script>
+</body>
+</html>

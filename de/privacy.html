@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datenschutz · Agent Workspace</title>
+<meta name="description" content="Agent Workspace für Mac und iPhone sammelt keine Daten. Alles bleibt auf deinem Mac und in deiner iCloud.">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Datenschutz · Agent Workspace">
+<meta property="og:description" content="Agent Workspace für Mac und iPhone sammelt keine Daten. Alles bleibt auf deinem Mac und in deiner iCloud.">
+<meta property="og:url" content="https://dat08101999.github.io/agent-workspace/de/privacy.html">
+<meta name="theme-color" content="#070707">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://dat08101999.github.io/agent-workspace/de/privacy.html">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Chakra+Petch:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .policy { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  .policy h1 { margin: 14px 0 8px; font: 600 clamp(30px, 4vw, 44px)/1.12 var(--display); }
+  .policy h2 { margin: 40px 0 10px; font-size: clamp(21px, 2.4vw, 26px); }
+  .policy p, .policy li { color: var(--moon-2); }
+  .policy strong { color: var(--moon); font-weight: 600; }
+  .policy ul { padding-left: 22px; }
+  .policy li { margin: 6px 0; }
+  .policy hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
+  .policy .date { margin-top: 0; }
+  @media (max-width: 600px) { .wrap { padding-left: 16px; padding-right: 16px; } .policy { padding: 40px 16px 64px; } }
+</style>
+<link rel="alternate" hreflang="en" href="https://dat08101999.github.io/agent-workspace/privacy.html">
+<link rel="alternate" hreflang="vi" href="https://dat08101999.github.io/agent-workspace/vi/privacy.html">
+<link rel="alternate" hreflang="es" href="https://dat08101999.github.io/agent-workspace/es/privacy.html">
+<link rel="alternate" hreflang="pt-BR" href="https://dat08101999.github.io/agent-workspace/pt-BR/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://dat08101999.github.io/agent-workspace/fr/privacy.html">
+<link rel="alternate" hreflang="de" href="https://dat08101999.github.io/agent-workspace/de/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://dat08101999.github.io/agent-workspace/privacy.html">
+<script>
+(() => {
+const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"], ["es", "Español", "es-ES"], ["pt-BR", "Português (Brasil)", "pt-BR"], ["fr", "Français", "fr-FR"], ["de", "Deutsch", "de-DE"]];
+})();
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Agent Workspace, Startseite"><i class="mark"></i>Agent Workspace</a>
+
+  </div>
+</header>
+
+<main class="policy">
+  <section>
+
+    <p class="label">Datenschutz</p>
+    <h1>Agent Workspace sammelt keine Daten</h1>
+    <p class="date label">Zuletzt aktualisiert am 17. Oktober 2026</p>
+    <p>Agent Workspace ist eine App für deinen Mac mit einer Begleit-App für dein iPhone. Es gibt kein Konto und keinen Server von uns. Wir sammeln, erhalten, speichern oder verkaufen keine Informationen über dich oder deine Nutzung der App. Es gibt keine Nutzungsanalyse, Werbung oder Nachverfolgung.</p>
+
+    <h2>Auf deinem Mac</h2>
+    <ul>
+      <li>Die App speichert ihre Daten (eine lokale Datenbank, Logs und ein lokales Zugriffstoken) auf deinem Mac unter <code>~/Library/Application Support/Agent Workspace</code>. Ihr lokaler Server lauscht nur auf <code>127.0.0.1</code>.</li>
+      <li>Deine Unterhaltungen laufen in den Coding-Tools, die du selbst installiert hast (Claude Code, Codex, Antigravity), mit deinen eigenen Konten bei diesen Anbietern. Agent Workspace ruft selbst keine Modell-API auf. Was diese Tools an ihre Anbieter senden, unterliegt den Datenschutzbedingungen der Anbieter.</li>
+      <li>Beim Start fügt die App einen Eintrag namens <code>pet_task_manager</code> zur Konfiguration jedes dieser Tools hinzu, damit eine Unterhaltung die eigenen Tools der App verwenden kann. Vor dem Schreiben erstellt sie eine Sicherungskopie der Datei und fügt den Eintrag nicht erneut hinzu, wenn du ihn entfernst.</li>
+    </ul>
+
+    <h2>Auf deinem iPhone</h2>
+    <ul>
+      <li>Die iPhone-App kommuniziert nur mit deinem eigenen Mac: direkt über HTTPS, wenn beide im selben Netzwerk sind, andernfalls über dein eigenes iCloud-Konto und die private Datenbank im iCloud-Container der App. Dort werden die Nachrichten in verschlüsselten Feldern gespeichert. Apple speichert diese iCloud-Daten gemäß den Datenschutzbestimmungen von Apple; wir haben keinen Zugriff darauf.</li>
+      <li>Mitteilungen zu einer Unterhaltung erreichen dein iPhone über deine iCloud. Sie nennen nur die Art des Ereignisses und den Namen der Unterhaltung, niemals den Inhalt dessen, was ein Agent oder du geschrieben habt.</li>
+      <li>Auf dem iPhone speichert die App deine Einstellungen (helles oder dunkles Erscheinungsbild und geöffnete Ordner), die zuletzt angezeigte Unterhaltungsliste, damit sie sofort erscheint, und die Verbindung zu deinem Mac. Wenn du die App löschst, werden diese Daten ebenfalls gelöscht.</li>
+      <li>Fotos und Dateien, die du auf dem iPhone anhängst, gehen nur an deinen eigenen Mac, direkt über dein Wi‑Fi oder über deine iCloud und von dort an den Anbieter der Unterhaltung – wie beim Anhängen auf dem Mac. Die Kamera wird nur verwendet, wenn du ein Foto zum Anhängen aufnimmst. Die Fotoauswahl zeigt der App nur die von dir ausgewählten Fotos.</li>
+      <li>Der Beispielmodus („Mit Beispieldaten ausprobieren“) verwendet in der App enthaltene erfundene Daten und sendet nichts irgendwohin.</li>
+    </ul>
+
+    <h2>Kontakt</h2>
+    <p>Fragen zu diesen Datenschutzbestimmungen: Erstelle ein Issue unter <a href="https://github.com/dat08101999/agent-workspace/issues">github.com/dat08101999/agent-workspace/issues</a>. Wenn sich diese Bestimmungen ändern, wird die neue Version mit Datum auf dieser Seite veröffentlicht.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="./"><i class="mark"></i>Agent Workspace</a>
+    <nav class="label" aria-label="Externe Links">
+      <a href="https://github.com/dat08101999/agent-workspace#readme">Dokumentation</a>
+      <a href="https://github.com/dat08101999/agent-workspace/issues">Fehler melden</a>
+    </nav>
+  </div>
+  <div class="wrap"><nav class="language-menu" aria-label="Sprache"><a href="../privacy.html" lang="en" hreflang="en" data-language="en">English</a><a href="../vi/privacy.html" lang="vi" hreflang="vi" data-language="vi">Tiếng Việt</a><a href="../es/privacy.html" lang="es" hreflang="es" data-language="es">Español</a><a href="../pt-BR/privacy.html" lang="pt-BR" hreflang="pt-BR" data-language="pt-BR">Português (Brasil)</a><a href="../fr/privacy.html" lang="fr" hreflang="fr" data-language="fr">Français</a><a href="../de/privacy.html" lang="de" hreflang="de" data-language="de" aria-current="page">Deutsch</a></nav></div>
+</footer>
+<script>
+document.querySelectorAll('[data-language]').forEach(link => {
+  link.addEventListener('click', () => {
+    try { localStorage.setItem('aw-site-language', link.dataset.language); } catch { /* Optional storage. */ }
+  });
+});
+</script>
+</body>
+</html>

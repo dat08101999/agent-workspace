@@ -336,3 +336,10 @@ html:not(.js) .chapter { cursor: default; }
   .floor { transition: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* The language menu sits below the existing footer links. */
+.language-menu { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 20px; padding: 0 0 24px; font: 400 12px/1.6 var(--font); }
+.language-menu a { color: var(--moon-3); text-decoration: none; }
+.language-menu a:hover, .language-menu a[aria-current="page"] { color: var(--moon); }
+.language-menu a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 759px) { .language-menu { justify-content: flex-start; } }
