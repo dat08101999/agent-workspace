@@ -294,15 +294,15 @@ if ('IntersectionObserver' in window && !still) {
 (async () => {
   const show = info => { for (const key of ['version', 'size', 'sha']) if (info[key]) document.querySelectorAll(`[data-rel="${key}"]`).forEach(node => { node.textContent = info[key]; }); };
   // Nhớ trong phiên này để mỗi lần tải lại trang không hỏi GitHub nữa (GitHub giới hạn số lần hỏi theo giờ).
-  try { const kept = JSON.parse(sessionStorage.getItem('aw-release') || 'null'); if (kept) { show(kept); return; } } catch { /* không có bộ nhớ phiên cũng không sao */ }
+  try { const kept = JSON.parse(sessionStorage.getItem('aw-release-notarized-v1') || 'null'); if (kept) { show(kept); return; } } catch { /* không có bộ nhớ phiên cũng không sao */ }
   try {
     const reply = await fetch('https://api.github.com/repos/dat08101999/agent-workspace/releases/latest', { headers: { Accept: 'application/vnd.github+json' } });
     if (!reply.ok) return;
-    const release = await reply.json(), asset = (release.assets || []).find(one => one.name === 'Agent-Workspace-arm64.dmg');
+    const release = await reply.json(), asset = (release.assets || []).find(one => one.name === 'Agent-Workspace-arm64-notarized.zip');
     if (!asset) return;
     const info = { version: String(release.tag_name || '').replace(/^v/, ''), size: Math.round(asset.size / 1e6) + siteText('demo.text88'), sha: String(asset.digest || '').replace(/^sha256:/, '') };
     show(info);
-    try { sessionStorage.setItem('aw-release', JSON.stringify(info)); } catch { /* như trên */ }
+    try { sessionStorage.setItem('aw-release-notarized-v1', JSON.stringify(info)); } catch { /* như trên */ }
   } catch { /* Trang vẫn đúng với số ghi sẵn. */ }
 })();
 

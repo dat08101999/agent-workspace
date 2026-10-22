@@ -53,7 +53,7 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
       <a href="#dung">Parar</a>
       <a href="#tiep">Continuar</a>
       <a href="#cai-dat">Instalar</a>
-      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Baixar para Mac</a>
+      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Baixar para Mac</a>
     </nav>
   </div>
 </header>
@@ -70,10 +70,10 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
       <div class="side">
         <p>Agent Workspace reúne Claude Code, Codex e Antigravity em uma janela no seu Mac. Veja quais agentes estão trabalhando e quais aguardam você, responda no app e pare um turno quando precisar.</p>
         <div class="cta">
-          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Baixar para Mac</a>
+          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Baixar para Mac</a>
           <a class="more" href="#phim">▸ Assistir ao filme</a>
         </div>
-        <p class="fine">macOS · Apple silicon · versão <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+        <p class="fine">macOS · Apple silicon · versão <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span></p>
       </div>
     </div>
     <div id="room"><div class="stage" id="stage"><div class="floor" id="floor"></div></div></div>
@@ -226,42 +226,42 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
     <div class="head reveal">
       <span class="label">Instalar</span>
       <h2>Instale Agent Workspace</h2>
-      <p class="lead">Um arquivo DMG. Você não precisa instalar .NET nem Node: o servidor já vem com o app.</p>
+      <p class="lead">Um ZIP com o app para Mac assinado e notarizado. O servidor está incluído; não é preciso instalar .NET nem Node.</p>
     </div>
     <div class="install reveal">
       <div>
         <h4 class="sub">O que você precisa</h4>
         <ul class="bare">
-          <li>Um Mac com Apple silicon.</li>
+          <li>Um Mac com Apple silicon e macOS 12 ou posterior.</li>
           <li><code>python3</code> no seu computador. A versão do Xcode Command Line Tools é suficiente; se não tiver, execute <code>xcode-select --install</code>.</li>
           <li>Pelo menos uma ferramenta instalada e com sessão iniciada: Claude Code, Codex ou Antigravity.</li>
         </ul>
         <div class="get" id="tai-ngay">
-          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Baixar para Mac</a>
-          <p class="fine">Agent-Workspace-arm64.dmg · versão <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span><br>SHA-256 <code data-rel="sha">a51194c8b27582f66d8a30338f094756a9064159987ef377dc197adf898a90d2</code></p>
+          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Baixar para Mac</a>
+          <p class="fine">Agent-Workspace-arm64-notarized.zip · versão <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span><br>SHA-256 <code data-rel="sha">9650c9d5d4097a70afcbacce51018938bf24d9b8e2d634b6bc8d428df403d871</code></p>
         </div>
       </div>
       <div>
         <h4 class="sub">Três etapas</h4>
         <ol class="steps">
-          <li><b>Baixe o DMG</b>Clique em “Baixar para Mac” ou baixe <code>Agent-Workspace-arm64.dmg</code> na página de <a href="https://github.com/dat08101999/agent-workspace/releases">lançamentos</a> no GitHub.</li>
-          <li><b>Arraste para Applications</b>Abra o DMG e arraste Agent Workspace para a pasta Applications.</li>
-          <li><b>Abra pela primeira vez</b>Abra Agent Workspace em Applications. Na primeira vez, o macOS vai bloqueá-lo e informar que não foi possível verificar o app.</li>
+          <li><b>Baixe o ZIP</b>Clique em “Baixar para Mac” para obter <code>Agent-Workspace-arm64-notarized.zip</code>.</li>
+          <li><b>Mova para Aplicativos</b>Descompacte o arquivo e arraste <code>Agent Workspace.app</code> para Aplicativos.</li>
+          <li><b>Abra o app</b>Abra o Agent Workspace em Aplicativos. Se o macOS perguntar se deseja abrir um app baixado da internet, clique em Abrir.</li>
         </ol>
       </div>
     </div>
     <div class="gate reveal">
       <div>
-        <h3>O macOS bloqueará o app na primeira vez</h3>
-        <p>O app não tem assinatura Apple Developer ID nem foi notarizado pela Apple, então o macOS o bloqueia na primeira vez. Depois, abra normalmente.</p>
+        <h3>Assinado com Developer ID e notarizado pela Apple</h3>
+        <p>O download atual tem uma assinatura Developer ID válida e um tíquete de notarização da Apple anexado. O Gatekeeper aceitou o app após a extração.</p>
       </div>
       <div>
-        <h4 class="sub">Permita a abertura</h4>
+        <h4 class="sub">Na primeira abertura</h4>
         <ol class="steps">
-          <li>Feche o aviso. Abra Ajustes do Sistema → Privacidade e Segurança.</li>
-          <li>Role até Segurança. Você verá uma mensagem dizendo que Agent Workspace foi bloqueado.</li>
-          <li>Clique em “Abrir Mesmo Assim”.</li>
-          <li>Quando o macOS pedir, confirme com a senha do Mac ou Touch ID e abra o app novamente.</li>
+          <li>Clique duas vezes no ZIP para extrair Agent Workspace.app.</li>
+          <li>Mova o app para Aplicativos antes de abri-lo.</li>
+          <li>Abra o Agent Workspace em Aplicativos.</li>
+          <li>Se o macOS pedir confirmação para abrir um app baixado, clique em Abrir.</li>
         </ol>
       </div>
     </div>
@@ -293,7 +293,7 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
     <div class="honest reveal">
       <div><b>Entrar no MCP do Claude</b><span>Ainda não é possível entrar nos servidores MCP do Claude Code pelo app; use /mcp no Claude Code.</span></div>
       <div><b>Somente para Apple silicon</b><span>Disponível apenas para macOS em Macs com Apple silicon.</span></div>
-      <div><b>Sem assinatura nem notarização</b><span>O app não tem assinatura de um Apple Developer ID nem notarização da Apple, então você precisa seguir as etapas de “Abrir Mesmo Assim” na primeira vez.</span></div>
+      <div><b>macOS 12 ou posterior</b><span>O app para Mac exige macOS 12 ou posterior. Versões anteriores não são compatíveis.</span></div>
       <div><b>Testado em poucas máquinas</b><span>O app foi testado em poucas máquinas. Se não abrir, relate o problema em <a href="https://github.com/dat08101999/agent-workspace/issues">Issues</a>.</span></div>
     </div>
   </section>
@@ -315,9 +315,9 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
 
   <section class="final" id="tai">
     <h2 id="lastline">Saiba quais agentes estão aguardando você.</h2>
-    <p class="lead">Baixe Agent Workspace para um Mac com Apple silicon. O app não tem assinatura nem notarização, então você precisará clicar em “Abrir Mesmo Assim” na primeira vez.</p>
-    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Baixar para Mac</a>
-    <p class="fine">Agent-Workspace-arm64.dmg · versão <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+    <p class="lead">Baixe o Agent Workspace para um Mac com Apple silicon. O app é assinado com Developer ID e notarizado pela Apple.</p>
+    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Baixar para Mac</a>
+    <p class="fine">Agent-Workspace-arm64-notarized.zip · versão <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span></p>
     <div class="lounge" aria-hidden="true"><div class="tiles"></div><div class="set" id="lounge"></div></div>
   </section>
 </main>

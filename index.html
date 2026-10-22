@@ -74,7 +74,7 @@ try {
       <a href="#dung">Stop</a>
       <a href="#tiep">Continue</a>
       <a href="#cai-dat">Install</a>
-      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Download for Mac</a>
+      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Download for Mac</a>
     </nav>
   </div>
 </header>
@@ -91,10 +91,10 @@ try {
       <div class="side">
         <p>Agent Workspace puts Claude Code, Codex and Antigravity in one window on your Mac. See which agents are running and which are waiting for you, reply in the app and stop a turn when needed.</p>
         <div class="cta">
-          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Download for Mac</a>
+          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Download for Mac</a>
           <a class="more" href="#phim">▸ Watch the film</a>
         </div>
-        <p class="fine">macOS · Apple silicon · version <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+        <p class="fine">macOS · Apple silicon · version <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span></p>
       </div>
     </div>
     <div id="room"><div class="stage" id="stage"><div class="floor" id="floor"></div></div></div>
@@ -247,42 +247,42 @@ try {
     <div class="head reveal">
       <span class="label">Install</span>
       <h2>Install Agent Workspace</h2>
-      <p class="lead">One DMG file. You don't need to install .NET or Node: the server comes with the app.</p>
+      <p class="lead">One ZIP containing the signed, notarized Mac app. The server comes with it; no .NET or Node installation is needed.</p>
     </div>
     <div class="install reveal">
       <div>
         <h4 class="sub">What you need</h4>
         <ul class="bare">
-          <li>A Mac with Apple silicon.</li>
+          <li>A Mac with Apple silicon, running macOS 12 or later.</li>
           <li><code>python3</code> on your machine. The version from Xcode Command Line Tools is enough; if you don't have it, run <code>xcode-select --install</code>.</li>
           <li>At least one tool installed and signed in: Claude Code, Codex or Antigravity.</li>
         </ul>
         <div class="get" id="tai-ngay">
-          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Download for Mac</a>
-          <p class="fine">Agent-Workspace-arm64.dmg · version <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span><br>SHA-256 <code data-rel="sha">a51194c8b27582f66d8a30338f094756a9064159987ef377dc197adf898a90d2</code></p>
+          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Download for Mac</a>
+          <p class="fine">Agent-Workspace-arm64-notarized.zip · version <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span><br>SHA-256 <code data-rel="sha">9650c9d5d4097a70afcbacce51018938bf24d9b8e2d634b6bc8d428df403d871</code></p>
         </div>
       </div>
       <div>
         <h4 class="sub">Three steps</h4>
         <ol class="steps">
-          <li><b>Download the DMG</b>Click “Download for Mac”, or get <code>Agent-Workspace-arm64.dmg</code> from <a href="https://github.com/dat08101999/agent-workspace/releases">Releases</a> on GitHub.</li>
-          <li><b>Drag into Applications</b>Open the DMG, then drag Agent Workspace into Applications.</li>
-          <li><b>Open for the first time</b>Open Agent Workspace from Applications. macOS will block it the first time and say it cannot verify the app.</li>
+          <li><b>Download the ZIP</b>Click “Download for Mac” to get <code>Agent-Workspace-arm64-notarized.zip</code>.</li>
+          <li><b>Move into Applications</b>Unzip the file, then drag <code>Agent Workspace.app</code> into Applications.</li>
+          <li><b>Open the app</b>Open Agent Workspace from Applications. If macOS asks whether to open an app downloaded from the internet, click Open.</li>
         </ol>
       </div>
     </div>
     <div class="gate reveal">
       <div>
-        <h3>macOS will block the app the first time</h3>
-        <p>The app is not signed with an Apple Developer ID or notarized by Apple, so macOS blocks it the first time. After that, open it normally.</p>
+        <h3>Signed with Developer ID and notarized by Apple</h3>
+        <p>The current download has a valid Developer ID signature and a stapled Apple notarization ticket. Gatekeeper accepted the app after extraction.</p>
       </div>
       <div>
-        <h4 class="sub">Allow it to open</h4>
+        <h4 class="sub">When opening for the first time</h4>
         <ol class="steps">
-          <li>Dismiss the warning. Open System Settings → Privacy &amp; Security.</li>
-          <li>Scroll down to Security. You'll see a message saying Agent Workspace was blocked.</li>
-          <li>Click “Open Anyway”.</li>
-          <li>Confirm with your Mac password or Touch ID when macOS asks, then open the app again.</li>
+          <li>Double-click the ZIP to extract Agent Workspace.app.</li>
+          <li>Move the app into Applications before opening it.</li>
+          <li>Open Agent Workspace from Applications.</li>
+          <li>If macOS asks you to confirm opening a downloaded app, click Open.</li>
         </ol>
       </div>
     </div>
@@ -314,7 +314,7 @@ try {
     <div class="honest reveal">
       <div><b>Claude MCP sign-in</b><span>Signing in to Claude Code's MCP servers is not available in the app yet; use /mcp in Claude Code.</span></div>
       <div><b>Apple silicon only</b><span>Only available for macOS on Apple silicon.</span></div>
-      <div><b>Unsigned, not notarized</b><span>The app is not signed with an Apple Developer ID or notarized by Apple, so you need the “Open Anyway” steps the first time.</span></div>
+      <div><b>macOS 12 or later</b><span>The Mac app requires macOS 12 or later. Older macOS versions are not supported.</span></div>
       <div><b>Tested on few machines</b><span>The app has only been tested on a few machines. If it won't open, report it in <a href="https://github.com/dat08101999/agent-workspace/issues">Issues</a>.</span></div>
     </div>
   </section>
@@ -336,9 +336,9 @@ try {
 
   <section class="final" id="tai">
     <h2 id="lastline">Know which agents are waiting for you.</h2>
-    <p class="lead">Download Agent Workspace for a Mac with Apple silicon. The app is unsigned and not notarized, so you'll need to click “Open Anyway” the first time.</p>
-    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Download for Mac</a>
-    <p class="fine">Agent-Workspace-arm64.dmg · version <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+    <p class="lead">Download Agent Workspace for a Mac with Apple silicon. The app is signed with Developer ID and notarized by Apple.</p>
+    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Download for Mac</a>
+    <p class="fine">Agent-Workspace-arm64-notarized.zip · version <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span></p>
     <div class="lounge" aria-hidden="true"><div class="tiles"></div><div class="set" id="lounge"></div></div>
   </section>
 </main>

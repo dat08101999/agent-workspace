@@ -53,7 +53,7 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
       <a href="#dung">Stoppen</a>
       <a href="#tiep">Fortfahren</a>
       <a href="#cai-dat">Installieren</a>
-      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Für Mac laden</a>
+      <a class="btn small" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Für Mac laden</a>
     </nav>
   </div>
 </header>
@@ -70,10 +70,10 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
       <div class="side">
         <p>Agent Workspace vereint Claude Code, Codex und Antigravity in einem Fenster auf deinem Mac. Sieh, welche Agenten arbeiten und welche auf dich warten, antworte in der App und stoppe bei Bedarf einen Durchlauf.</p>
         <div class="cta">
-          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Für Mac laden</a>
+          <a class="btn" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Für Mac laden</a>
           <a class="more" href="#phim">▸ Film ansehen</a>
         </div>
-        <p class="fine">macOS · Apple silicon · Ausgabe <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+        <p class="fine">macOS · Apple silicon · Ausgabe <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span></p>
       </div>
     </div>
     <div id="room"><div class="stage" id="stage"><div class="floor" id="floor"></div></div></div>
@@ -226,42 +226,42 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
     <div class="head reveal">
       <span class="label">Installieren</span>
       <h2>Agent Workspace installieren</h2>
-      <p class="lead">Eine DMG-Datei. Du musst weder .NET noch Node installieren: Der Server ist in der App enthalten.</p>
+      <p class="lead">Eine ZIP-Datei mit der signierten und von Apple beglaubigten Mac-App. Der Server ist enthalten; .NET oder Node müssen nicht installiert werden.</p>
     </div>
     <div class="install reveal">
       <div>
         <h4 class="sub">Was du brauchst</h4>
         <ul class="bare">
-          <li>Einen Mac mit Apple silicon.</li>
+          <li>Ein Mac mit Apple silicon und macOS 12 oder neuer.</li>
           <li><code>python3</code> auf deinem Rechner. Die Version aus den Xcode Command Line Tools reicht. Falls sie fehlt, führe <code>xcode-select --install</code> aus.</li>
           <li>Mindestens ein installiertes und angemeldetes Tool: Claude Code, Codex oder Antigravity.</li>
         </ul>
         <div class="get" id="tai-ngay">
-          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Für Mac laden</a>
-          <p class="fine">Agent-Workspace-arm64.dmg · Version <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span><br>SHA-256 <code data-rel="sha">a51194c8b27582f66d8a30338f094756a9064159987ef377dc197adf898a90d2</code></p>
+          <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Für Mac laden</a>
+          <p class="fine">Agent-Workspace-arm64-notarized.zip · Version <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span><br>SHA-256 <code data-rel="sha">9650c9d5d4097a70afcbacce51018938bf24d9b8e2d634b6bc8d428df403d871</code></p>
         </div>
       </div>
       <div>
         <h4 class="sub">Drei Schritte</h4>
         <ol class="steps">
-          <li><b>DMG laden</b>Klicke auf „Für Mac laden“ oder lade <code>Agent-Workspace-arm64.dmg</code> auf GitHub unter <a href="https://github.com/dat08101999/agent-workspace/releases">Veröffentlichungen</a> herunter.</li>
-          <li><b>In Programme ziehen</b>Öffne die DMG und ziehe Agent Workspace in den Ordner „Programme“.</li>
-          <li><b>Zum ersten Mal öffnen</b>Öffne Agent Workspace aus dem Ordner „Programme“. Beim ersten Mal blockiert macOS die App und meldet, dass sie nicht überprüft werden kann.</li>
+          <li><b>ZIP herunterladen</b>Klicke auf „Für Mac laden“, um <code>Agent-Workspace-arm64-notarized.zip</code> herunterzuladen.</li>
+          <li><b>In Programme verschieben</b>Entpacke die Datei und ziehe <code>Agent Workspace.app</code> in den Ordner Programme.</li>
+          <li><b>App öffnen</b>Öffne Agent Workspace aus Programme. Falls macOS nach dem Öffnen einer aus dem Internet geladenen App fragt, klicke auf Öffnen.</li>
         </ol>
       </div>
     </div>
     <div class="gate reveal">
       <div>
-        <h3>macOS blockiert die App beim ersten Öffnen</h3>
-        <p>Die App ist weder mit einer Apple Developer ID signiert noch von Apple notarisiert. Deshalb blockiert macOS sie beim ersten Öffnen. Danach kannst du sie wie gewohnt öffnen.</p>
+        <h3>Mit Developer ID signiert und von Apple beglaubigt</h3>
+        <p>Der aktuelle Download hat eine gültige Developer-ID-Signatur und ein angeheftetes Beglaubigungsticket von Apple. Gatekeeper hat die entpackte App akzeptiert.</p>
       </div>
       <div>
-        <h4 class="sub">Öffnen erlauben</h4>
+        <h4 class="sub">Beim ersten Öffnen</h4>
         <ol class="steps">
-          <li>Schließe den Warnhinweis. Öffne „Systemeinstellungen“ → „Datenschutz &amp; Sicherheit“.</li>
-          <li>Scrolle nach unten zum Bereich „Sicherheit“. Dort siehst du den Hinweis, dass Agent Workspace blockiert wurde.</li>
-          <li>Klicke auf „Trotzdem öffnen“.</li>
-          <li>Bestätige die Nachfrage von macOS mit deinem Mac-Passwort oder Touch ID und öffne die App erneut.</li>
+          <li>Doppelklicke auf die ZIP-Datei, um Agent Workspace.app zu entpacken.</li>
+          <li>Verschiebe die App vor dem Öffnen in Programme.</li>
+          <li>Öffne Agent Workspace aus Programme.</li>
+          <li>Falls macOS das Öffnen einer geladenen App bestätigen lässt, klicke auf Öffnen.</li>
         </ol>
       </div>
     </div>
@@ -293,7 +293,7 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
     <div class="honest reveal">
       <div><b>Bei Claude MCP anmelden</b><span>Die Anmeldung bei MCP-Servern von Claude Code ist in der App noch nicht verfügbar. Verwende /mcp in Claude Code.</span></div>
       <div><b>Nur für Apple silicon</b><span>Nur für macOS auf Apple silicon verfügbar.</span></div>
-      <div><b>Nicht signiert, nicht notariell beglaubigt</b><span>Die App ist nicht mit einer Apple Developer ID signiert und nicht von Apple notariell beglaubigt. Deshalb musst du sie beim ersten Öffnen trotzdem öffnen.</span></div>
+      <div><b>macOS 12 oder neuer</b><span>Die Mac-App benötigt macOS 12 oder neuer. Ältere macOS-Versionen werden nicht unterstützt.</span></div>
       <div><b>Auf wenigen Geräten getestet</b><span>Die App wurde bisher nur auf wenigen Geräten getestet. Wenn sie sich nicht öffnen lässt, melde es unter <a href="https://github.com/dat08101999/agent-workspace/issues">Issues</a>.</span></div>
     </div>
   </section>
@@ -315,9 +315,9 @@ const languages = [["en", "English", "en-US"], ["vi", "Tiếng Việt", "vi-VN"]
 
   <section class="final" id="tai">
     <h2 id="lastline">Sieh sofort, welche Agenten auf dich warten.</h2>
-    <p class="lead">Lade Agent Workspace für einen Mac mit Apple silicon. Die App ist nicht signiert und nicht notariell beglaubigt. Deshalb musst du beim ersten Öffnen auf „Trotzdem öffnen“ klicken.</p>
-    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg">Für Mac laden</a>
-    <p class="fine">Agent-Workspace-arm64.dmg · Version <span data-rel="version">1.0.4</span> · <span data-rel="size">65 MB</span></p>
+    <p class="lead">Lade Agent Workspace für einen Mac mit Apple silicon. Die App ist mit Developer ID signiert und von Apple beglaubigt.</p>
+    <a class="btn big" href="https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip">Für Mac laden</a>
+    <p class="fine">Agent-Workspace-arm64-notarized.zip · Version <span data-rel="version">1.0.4</span> · <span data-rel="size">56 MB</span></p>
     <div class="lounge" aria-hidden="true"><div class="tiles"></div><div class="set" id="lounge"></div></div>
   </section>
 </main>
