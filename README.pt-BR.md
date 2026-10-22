@@ -6,7 +6,7 @@ Agent Workspace é um app para macOS que reúne Claude Code, Codex e Antigravity
 
 <img src="images/app-icon.png" width="128" alt="Agent Workspace">
 
-Baixe a versão mais recente: [Agent-Workspace-arm64.dmg](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg) (as outras versões estão na página [Releases](https://github.com/dat08101999/agent-workspace/releases)).
+Baixe a versão mais recente: [Agent-Workspace-arm64-notarized.zip](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip) (as outras versões estão na página [Releases](https://github.com/dat08101999/agent-workspace/releases)).
 
 Página inicial, com uma demonstração interativa e um vídeo: https://dat08101999.github.io/agent-workspace/
 
@@ -30,19 +30,11 @@ Você não precisa instalar .NET nem Node. O servidor já vem com o app.
 
 ## Instalação
 
-1. Clique no link acima ou acesse Releases e baixe `Agent-Workspace-arm64.dmg`.
-2. Abra o DMG e arraste `Agent Workspace` para Applications.
-3. Abra `Agent Workspace` em Applications. Na primeira vez, o macOS vai bloquear o app e informar que não é possível verificá-lo.
+1. **Baixe o ZIP.** Clique em “Baixar para Mac” para obter `Agent-Workspace-arm64-notarized.zip`.
+2. **Mova para Aplicativos.** Descompacte o arquivo e arraste `Agent Workspace.app` para Aplicativos.
+3. **Abra o app.** Abra o Agent Workspace em Aplicativos. Se o macOS perguntar se deseja abrir um app baixado da internet, clique em Abrir.
 
-O app não tem assinatura Apple Developer ID nem foi notarizado pela Apple, por isso o macOS o bloqueia na primeira vez. Para permitir a abertura:
-
-1. Feche o aviso do macOS.
-2. Abra Ajustes do Sistema → Privacidade e Segurança.
-3. Role até Segurança. Você verá uma mensagem informando que `Agent Workspace` foi bloqueado.
-4. Clique em “Abrir Mesmo Assim”. Em vietnamita: Cài đặt hệ thống → Quyền riêng tư & Bảo mật → "Vẫn mở".
-5. Quando o macOS pedir, confirme com a senha do Mac ou com Touch ID e abra o app novamente.
-
-Depois disso, abra o app normalmente.
+O download atual tem uma assinatura Developer ID válida e um tíquete de notarização da Apple anexado. O Gatekeeper aceitou o app após a extração.
 
 ## Primeira abertura
 
@@ -140,7 +132,7 @@ O app não chama nenhuma API de modelos. Cada turno é executado pelas ferrament
 - No modo de permissões Manual, aparece um cartão de aprovação cada vez que Claude usa a ferramenta de agente filho.
 - Ainda não é possível entrar nos servidores MCP do Claude Code pelo app; use `/mcp` no Claude Code.
 - Disponível apenas para macOS em Apple silicon.
-- O app não tem assinatura Apple Developer ID nem foi notarizado pela Apple, então você precisa seguir as etapas de “Abrir Mesmo Assim” na primeira vez.
+- O app para Mac exige macOS 12 ou posterior. Versões anteriores não são compatíveis.
 - O app foi testado em poucos computadores. Se não abrir, informe o problema em Issues.
 
 ## Desinstalação

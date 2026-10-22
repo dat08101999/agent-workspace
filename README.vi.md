@@ -6,7 +6,7 @@ Agent Workspace là app macOS đặt Claude Code, Codex và Antigravity trong m�
 
 <img src="images/app-icon.png" width="128" alt="Agent Workspace">
 
-Tải bản mới nhất: [Agent-Workspace-arm64.dmg](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64.dmg) (các bản khác ở trang [Releases](https://github.com/dat08101999/agent-workspace/releases)).
+Tải bản mới nhất: [Agent-Workspace-arm64-notarized.zip](https://github.com/dat08101999/agent-workspace/releases/latest/download/Agent-Workspace-arm64-notarized.zip) (các bản khác ở trang [Releases](https://github.com/dat08101999/agent-workspace/releases)).
 
 Trang giới thiệu, có phần dùng thử và phim: https://dat08101999.github.io/agent-workspace/
 
@@ -30,19 +30,11 @@ Bạn không cần cài .NET hay Node. Phần server đã đi kèm trong app.
 
 ## Cài đặt
 
-1. Bấm đường dẫn ở trên, hoặc vào trang Releases, tải tệp `Agent-Workspace-arm64.dmg`.
-2. Mở tệp DMG, kéo `Agent Workspace` vào thư mục Applications.
-3. Mở `Agent Workspace` từ Applications. Lần đầu macOS sẽ chặn và báo không xác minh được app.
+1. **Tải tệp ZIP.** Bấm “Tải cho Mac” để lấy `Agent-Workspace-arm64-notarized.zip`.
+2. **Chuyển vào Applications.** Giải nén tệp, rồi kéo `Agent Workspace.app` vào thư mục Applications.
+3. **Mở app.** Mở Agent Workspace từ Applications. Nếu macOS hỏi có muốn mở app tải từ Internet, bấm Mở.
 
-App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng (notarize), nên macOS chặn ở lần mở đầu. Để cho phép:
-
-1. Đóng hộp thoại cảnh báo của macOS.
-2. Mở Cài đặt hệ thống → Quyền riêng tư & Bảo mật.
-3. Kéo xuống phần Bảo mật. Bạn sẽ thấy một dòng nói `Agent Workspace` đã bị chặn.
-4. Bấm "Vẫn mở". Nếu macOS dùng tiếng Anh: System Settings → Privacy & Security → "Open Anyway".
-5. Xác nhận bằng mật khẩu Mac hoặc Touch ID khi macOS hỏi, rồi mở app lại.
-
-Những lần sau bạn mở app như bình thường.
+Bản tải hiện tại có chữ ký Developer ID hợp lệ và đã gắn vé công chứng của Apple. Gatekeeper đã chấp nhận app sau khi giải nén.
 
 ## Lần mở đầu
 
@@ -140,7 +132,7 @@ App không gọi API model nào. Mọi lượt chạy đều do công cụ của
 - Ở chế độ quyền Manual, mỗi lần Claude dùng công cụ agent con sẽ hiện một thẻ xin phép.
 - Đăng nhập máy chủ MCP của Claude Code chưa làm được trong app; dùng lệnh `/mcp` trong Claude Code.
 - Chỉ có bản cho macOS trên Apple silicon.
-- App chưa được ký bằng Apple Developer ID và chưa được Apple công chứng, nên cần làm các bước "Vẫn mở" ở lần mở đầu.
+- App Mac yêu cầu macOS 12 trở lên. Các phiên bản macOS cũ hơn chưa được hỗ trợ.
 - App mới được thử trên ít máy. Nếu app không mở được, hãy báo ở mục Issues.
 
 ## Gỡ cài đặt
